@@ -165,5 +165,8 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "cypress-iframe": "^1.0.1"
+  }
 }
