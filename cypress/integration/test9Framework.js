@@ -32,5 +32,15 @@ describe("Nineth test with Rahul", () => {
     });
 
     productPage.checkOutButton().click(); //checking the cart
+    cy.contains("Checkout").click();
+    cy.get("#country").type("India");
+    cy.wait(8000);
+    cy.get(".suggestion > ul > li > a").click();
+    cy.get("#checkbox2").click();
+    cy.get('input[type="submit"]').click({ force: true });
+    //cy.get(".alert").should(
+    //  "have.text",                                                                          must change asertation bc, alert have some aditional words
+    //  "Success! Thank you! Your order will be delivered in next few weeks :-)."
+    //);
   });
 });
