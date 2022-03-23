@@ -42,5 +42,9 @@ describe("Nineth test with Rahul", () => {
     //  "have.text",                                                                          must change asertation bc, alert have some aditional words
     //  "Success! Thank you! Your order will be delivered in next few weeks :-)."
     //);
+    cy.get(".alert").then(function (element) {
+      const actualText = element.text();
+      expect(actualText.includes("Success")).to.be.true;
+    });
   });
 });
