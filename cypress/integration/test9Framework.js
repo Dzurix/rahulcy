@@ -2,7 +2,6 @@
 //alsways first reference, then anytning else
 "use strict";
 
-import { detectLimit } from "async";
 import HomePage from "../integration/pageObjects/HomePage";
 import ProductPage from "../integration/pageObjects/ProductPage";
 

@@ -167,8 +167,12 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-iframe": "^1.0.1",
     "mocha": "^9.2.2",
     "mochawesome": "^7.1.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   }
 }
