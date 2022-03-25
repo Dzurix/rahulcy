@@ -1,15 +1,15 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
+    "tests": 2,
     "passes": 1,
     "pending": 0,
-    "failures": 0,
-    "start": "2022-03-24T05:40:05.734Z",
-    "end": "2022-03-24T05:40:18.650Z",
-    "duration": 12916,
-    "testsRegistered": 1,
-    "passPercent": 100,
+    "failures": 1,
+    "start": "2022-03-25T05:37:33.539Z",
+    "end": "2022-03-25T05:37:48.573Z",
+    "duration": 15034,
+    "testsRegistered": 2,
+    "passPercent": 50,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "cbb3eac6-6c24-4642-bb77-b9911c6e7505",
+      "uuid": "a2949bb7-4bef-4151-955f-4f1dde7e113d",
       "title": "",
       "fullFile": "cypress/integration/BDD/ecommerce.feature",
       "file": "cypress/integration/BDD/ecommerce.feature",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "d7d65967-74a2-40a3-97f0-b1d83a94799f",
+          "uuid": "dce16a47-781e-4a68-8b7c-cfbf820b46e2",
           "title": "End to end Ecommerce validation",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Ecomerce products delivery",
               "fullTitle": "End to end Ecommerce validation Ecomerce products delivery",
               "timedOut": null,
-              "duration": 9013,
+              "duration": 9378,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -47,20 +47,44 @@
               "context": null,
               "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
               "err": {},
-              "uuid": "fa8b2d42-5844-4b17-99d0-ef7cf236bae6",
-              "parentUUID": "d7d65967-74a2-40a3-97f0-b1d83a94799f",
+              "uuid": "7c5db087-8cd2-465c-bef5-48cd6176ea3f",
+              "parentUUID": "dce16a47-781e-4a68-8b7c-cfbf820b46e2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Filing the form to shop",
+              "fullTitle": "End to end Ecommerce validation Filing the form to shop",
+              "timedOut": null,
+              "duration": 1707,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {
+                "message": "Error: Step implementation missing for: I fill the form details",
+                "estack": "Error: Step implementation missing for: I fill the form details\n    at Context.resolveAndRunStepDefinition (https://rahulshettyacademy.com/__cypress/tests?p=cypress\\integration\\BDD\\ecommerce.feature:12499:11)\n    at Context.eval (https://rahulshettyacademy.com/__cypress/tests?p=cypress\\integration\\BDD\\ecommerce.feature:11814:35)",
+                "diff": null
+              },
+              "uuid": "30230976-ea31-4150-8d6a-32b3226bc4f6",
+              "parentUUID": "dce16a47-781e-4a68-8b7c-cfbf820b46e2",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fa8b2d42-5844-4b17-99d0-ef7cf236bae6"
+            "7c5db087-8cd2-465c-bef5-48cd6176ea3f"
           ],
-          "failures": [],
+          "failures": [
+            "30230976-ea31-4150-8d6a-32b3226bc4f6"
+          ],
           "pending": [],
           "skipped": [],
-          "duration": 9013,
+          "duration": 11085,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

@@ -62,5 +62,30 @@ Then("Select the country sumbit and verify Thank you message", () => {
   cy.get(".alert").then(function (element) {
     const actualText = element.text();
     expect(actualText.includes("Success")).to.be.true;
+
+    // 2 TEST SCENARIO
+
+    //When I fill the form details
+    When("When I fill the form details", function (dataTable) {
+      homePage.getEditBox().type(dataTable.rawTable[1][0]); //[1]this is what we call [bobz, male] -first row are name of column
+      //[0] this is how we call 'bobz'
+      homePage.getGender().select(dataTable.rawTable[1][1]);
+    });
+
+    //Then validate the forms behaviour
+
+    Then("Validate the forms behaviour", function () {
+      // homePage.getTwoWayDataBinding().should("have.value", this.data.name);
+      homePage.getEditBox().should("have.attr", "minlength", "2");
+      homePage.getEnterpreneur().should("be.disabled");
+
+      homePage.getShopTab().click();
+    });
+
+    //And select the Shop Page
+
+    And("Select the Shop Page", function () {
+      homePage.getShopTab().click();
+    });
   });
 });
