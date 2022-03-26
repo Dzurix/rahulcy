@@ -2,6 +2,5 @@
   "reporter": "mochawesome",
   "env": {
     "url": "https://rahulshettyacademy.com"
-  },
-  "testFiles": "**/*.feature"
+  }
 }
