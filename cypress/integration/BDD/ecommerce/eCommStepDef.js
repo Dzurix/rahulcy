@@ -72,7 +72,7 @@ Then("Select the country sumbit and verify Thank you message", () => {
       homePage.getGender().select(dataTable.rawTable[1][1]);
     });
 
-    //Then validate the forms behaviour
+    //Then validate the forms behaviour LOLO
 
     Then("Validate the forms behaviour", function () {
       // homePage.getTwoWayDataBinding().should("have.value", this.data.name);

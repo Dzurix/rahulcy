@@ -20,7 +20,7 @@ describe("Forth test with Rahul", () => {
 
     cy.on("window:confirm", (str) => {
       //Mocha
-      expect(str).to.equal("Hello , Are you sure you want to confirm?");
+      expect(str).to.equal("Hello , Are you sure you want to confirm?"); 
     });
 
     //CHILD TABS
