@@ -16,30 +16,55 @@ describe("Nineth test with Rahul", () => {
     const homePage = new HomePage();
     const productPage = new ProductPage();
 
-    cy.visit("https://rahulshettyacademy.com/angularpractice/");
+    cy.visit(Cypress.env("url") + "/angularpractice/");
 
-    homePage.getEditBox().type(this.data.name);
-    homePage.getGender().select(this.data.gender);
-    homePage.getTwoWayDataBinding().should("have.value", this.data.name);
+    // homePage.getEditBox().type(this.data.name);
+    //homePage.getGender().select(this.data.gender);
+    //homePage.getTwoWayDataBinding().should("have.value", this.data.name);
     homePage.getEditBox().should("have.attr", "minlength", "2");
-    homePage.getEntrepreneaur().should("be.disabled");
+    homePage.getEnterpreneur().should("be.disabled");
 
-    homePage.getShopTab.click();
+    homePage.getShopTab().click();
 
-    this.data.productName.forEach(function (element) {
-      cy.selectProduct(element);
+    // this.data.productName.forEach(function (element) {
+    //   cy.selectProduct(element);
+    // });
+    cy.get(":nth-child(3) > .card > .card-footer > .btn").click();
+    cy.get(":nth-child(4) > .card > .card-footer > .btn").click();
+    productPage.checkOutButton().click(); //checking the cart
+    var sum = 0;
+
+    cy.get("tr td:nth-child(4) strong")
+      .each(($el, index, $list) => {
+        const amount = $el.text();
+        var res = amount.split(" ");
+        res = res[1].trim();
+        sum = Number(sum) + Number(res);
+      })
+      .then(function () {
+        cy.log(sum);
+      });
+    cy.get("h3 strong").then(function (element) {
+      const amount = element.text();
+      var res = amount.split(" ");
+      var total = res[1].trim();
+
+      expect(Number(total)).to.equal(sum);
     });
 
-    productPage.checkOutButton().click(); //checking the cart
     cy.contains("Checkout").click();
     cy.get("#country").type("India");
-    cy.wait(8000);
-    cy.get(".suggestion > ul > li > a").click();
-    cy.get("#checkbox2").click();
+    cy.wait(5000);
+    cy.get(".suggestions > ul > li > a").click();
+    cy.get("#checkbox2").click({ force: true });
     cy.get('input[type="submit"]').click({ force: true });
     //cy.get(".alert").should(
     //  "have.text",                                                                          must change asertation - alert have some aditional words
     //  "Success! Thank you! Your order will be delivered in next few weeks :-)."
     //);
+    cy.get(".alert").then(function (element) {
+      const actualText = element.text();
+      expect(actualText.includes("Success")).to.be.true;
+    });
   });
 });

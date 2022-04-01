@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-03-26T04:02:11.091Z",
+    "end": "2022-03-26T04:02:25.832Z",
+    "duration": 14741,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "43e1615e-2aad-4965-9361-3b537d6a88bf",
+      "title": "",
+      "fullFile": "cypress/integration/BDD/ecommerce.feature",
+      "file": "cypress/integration/BDD/ecommerce.feature",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fbec76ab-b013-4cbb-a837-fb7e959ed4b1",
+          "title": "End to end Ecommerce validation",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Ecomerce products delivery",
+              "fullTitle": "End to end Ecommerce validation Ecomerce products delivery",
+              "timedOut": null,
+              "duration": 9292,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "8a356996-2ac5-4a3e-8a13-4e6539284299",
+              "parentUUID": "fbec76ab-b013-4cbb-a837-fb7e959ed4b1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Filing the form to shop",
+              "fullTitle": "End to end Ecommerce validation Filing the form to shop",
+              "timedOut": null,
+              "duration": 1679,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {
+                "message": "Error: Step implementation missing for: I fill the form details",
+                "estack": "Error: Step implementation missing for: I fill the form details\n    at Context.resolveAndRunStepDefinition (https://rahulshettyacademy.com/__cypress/tests?p=cypress\\integration\\BDD\\ecommerce.feature:12499:11)\n    at Context.eval (https://rahulshettyacademy.com/__cypress/tests?p=cypress\\integration\\BDD\\ecommerce.feature:11814:35)",
+                "diff": null
+              },
+              "uuid": "5ac9162b-8533-49cd-a862-65983868d9c1",
+              "parentUUID": "fbec76ab-b013-4cbb-a837-fb7e959ed4b1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8a356996-2ac5-4a3e-8a13-4e6539284299"
+          ],
+          "failures": [
+            "5ac9162b-8533-49cd-a862-65983868d9c1"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 10971,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.2"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.1.1"
+    }
+  }
+}

@@ -1,1 +1,6 @@
-{}
+{
+  "reporter": "mochawesome",
+  "env": {
+    "url": "https://rahulshettyacademy.com"
+  }
+}
