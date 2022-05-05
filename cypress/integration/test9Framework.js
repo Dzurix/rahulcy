@@ -12,7 +12,6 @@ describe("Nineth test with Rahul", () => {
       this.data = data;
     });
   });
-
   it("Framework - Hooks", () => {
     const homePage = new HomePage();
     const productPage = new ProductPage();
@@ -60,7 +59,7 @@ describe("Nineth test with Rahul", () => {
     cy.get("#checkbox2").click({ force: true });
     cy.get('input[type="submit"]').click({ force: true });
     //cy.get(".alert").should(
-    //  "have.text",                                                                          must change asertation bc, alert have some aditional words
+    //  "have.text",                                                                          must change asertation - alert have some aditional words
     //  "Success! Thank you! Your order will be delivered in next few weeks :-)."
     //);
     cy.get(".alert").then(function (element) {
