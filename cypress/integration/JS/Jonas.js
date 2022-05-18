@@ -3,8 +3,6 @@
 // console.log(inputYear + 18); // rezultat je 199118
 // console.log(Number(inputYear) + 18); // rezultat je 2009
 
-const { min } = require("lodash");
-
 // console.log(Number("Jonas")); // rezultat je NaN - Not a Number (invalid number)
 
 // console.log(String(23), 23); // druga boja u consoli nam govori da je rec o stringu
