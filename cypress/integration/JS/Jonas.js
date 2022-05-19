@@ -1,9 +1,9 @@
+"use strict";
+
 // const inputYear = "1991";
 // console.log(Number(inputYear));
 // console.log(inputYear + 18); // rezultat je 199118
 // console.log(Number(inputYear) + 18); // rezultat je 2009
-
-const { func } = require("assert-plus");
 
 // console.log(Number("Jonas")); // rezultat je NaN - Not a Number (invalid number)
 
@@ -210,12 +210,12 @@ const { func } = require("assert-plus");
 
 //coding chalenge 5
 
-const calcAverage = (a, b, c) => (a + b + c) / 3;
+// const calcAverage = (a, b, c) => (a + b + c) / 3;
 
-let avgDolphins = calcAverage(44, 23, 71);
-let avgKoalas = calcAverage(65, 54, 49);
+// let avgDolphins = calcAverage(44, 23, 71);
+// let avgKoalas = calcAverage(65, 54, 49);
 
-console.log(avgDolphins, avgKoalas);
+// console.log(avgDolphins, avgKoalas);
 
 //checkWinner
 
@@ -265,21 +265,133 @@ console.log(avgDolphins, avgKoalas);
 
 //coding chalenge 6
 
-const calcTip = (bill) => {
-  if (bill >= 50 && bill <= 300) {
-    return bill * 0.15;
-  } else {
-    return bill * 0.2;
-  }
+// const calcTip = (bill) => {
+//   if (bill >= 50 && bill <= 300) {
+//     return bill * 0.15;
+//   } else {
+//     return bill * 0.2;
+//   }
+// };
+
+// console.log(calcTip(301));
+
+// const bills = [125, 555, 44];
+
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+
+// const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+// console.log(tips);
+// console.log(total);
+
+//OBJECTS
+
+// const jonas = {
+//   // ovo je najjednostavniji nacin pisanja objekata - OBJECT LITERAL SINTAX
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   age: 2037 - 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+// };
+
+// console.log(jonas.lastName);
+// console.log(jonas["lastName"]);
+
+// // const nameKey = "Name";
+// // console.log(jonas["first" + nameKey]);
+// // console.log(jonas["last" + nameKey]);
+
+// // const interestedIn = prompt(
+// //   `What do you want to know about Jonas? Choose between firstName,
+// //   lastName, age, job and friends.`
+// // );
+
+// // if (jonas[interestedIn]) {
+// //   console.log(jonas[interestedIn]);
+// // } else {
+// //   console.log(`Wrong request! Choose between firstName,
+// //   lastName, age, job and friends.`);
+// // }
+// jonas.location = "Portugal";
+// jonas["twitter"] = "@jonasschmedtman";
+// console.log(jonas);
+
+// //chalenge
+
+// console.log(
+//   `${jonas.firstName} has ${jonas.friends.length} friends, and his best frieds is called ${jonas.friends[0]}.`
+// );
+
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   birthYear: 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+//   hasDriversLicense: true,
+
+//   calcAge: function (birthYear) {   // PRVA verzija pisanja funkcije
+//     return 2037 - birthYear;
+//   },
+
+//   calcAge: function () {            // DRUGA verzija pisanja funkcije preko 'this', ali je ovde problem
+//   zato sto se stalno racuna vrednost ako vise puta pozovemo funkciju
+//     console.log(this); //ovo ce isprintati ceo objekat
+//     return 2037 - this.birthYear; // ovo je this koje upucuje na birthyear
+//   }
+
+//   calcAge: function () {
+//     this.age = 2037 - this.birthYear; // TRECA verzija kojom se izbegava problem DRUGE,
+//     kreiranjem novog PROPERTYJA AGE
+//     return this.age; //
+//   },
+
+//   getSummary: function () {
+//     return `${this.firstName} is a ${this.calcAge()}-year old ${
+//       this.job
+//     } and he has ${this.hasDriversLicense ? "a" : "no"} drivers licence. `;
+//   },
+// };
+
+// console.log(jonas.calcAge());
+// console.log(jonas["calcAge"](2000));
+// console.log(jonas.age);
+
+// //Chalenge
+
+// console.log(jonas.getSummary());
+
+// CHALENGE 7
+
+const mark = {
+  firstName: "Mark",
+  lastName: "Miller",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.BMI = this.mass / this.height ** 2;
+    return this.BMI;
+  },
 };
 
-console.log(calcTip(301));
+const john = {
+  firstName: "John",
+  lastName: "Smith",
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    this.BMI = this.mass / this.height ** 2;
+    return this.BMI;
+  },
+};
 
-const bills = [125, 555, 44];
+console.log(mark.calcBMI());
+console.log(john.calcBMI());
 
-const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
-
-const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
-
-console.log(tips);
-console.log(total);
+console.log(` ${john.BMI > mark.BMI ? "John Smith" : "Mark Miller"}'s BMI (${
+  john.BMI > mark.BMI ? john.BMI : mark.BMI
+}) 
+is higher than ${john.BMI < mark.BMI ? "John Smith" : "Mark Miller"}'s BMI (${
+  john.BMI < mark.BMI ? john.BMI : mark.BMI
+}) !`);
