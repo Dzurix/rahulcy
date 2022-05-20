@@ -615,34 +615,101 @@ console.log('blagoje');
 
 // CHALENGE 7
 
-const mark = {
-  firstName: "Mark",
-  lastName: "Miller",
-  mass: 78,
-  height: 1.69,
-  calcBMI: function () {
-    this.BMI = this.mass / this.height ** 2;
-    return this.BMI;
-  },
-};
+// const mark = {
+//   firstName: "Mark",
+//   lastName: "Miller",
+//   mass: 78,
+//   height: 1.69,
+//   calcBMI: function () {
+//     this.BMI = this.mass / this.height ** 2;
+//     return this.BMI;
+//   },
+// };
 
-const john = {
-  firstName: "John",
-  lastName: "Smith",
-  mass: 92,
-  height: 1.95,
-  calcBMI: function () {
-    this.BMI = this.mass / this.height ** 2;
-    return this.BMI;
-  },
-};
+// const john = {
+//   firstName: "John",
+//   lastName: "Smith",
+//   mass: 92,
+//   height: 1.95,
+//   calcBMI: function () {
+//     this.BMI = this.mass / this.height ** 2;
+//     return this.BMI;
+//   },
+// };
 
-console.log(mark.calcBMI());
-console.log(john.calcBMI());
+// console.log(mark.calcBMI());
+// console.log(john.calcBMI());
 
-console.log(` ${john.BMI > mark.BMI ? "John Smith" : "Mark Miller"}'s BMI (${
-  john.BMI > mark.BMI ? john.BMI : mark.BMI
-}) 
-is higher than ${john.BMI < mark.BMI ? "John Smith" : "Mark Miller"}'s BMI (${
-  john.BMI < mark.BMI ? john.BMI : mark.BMI
-}) !`);
+// console.log(` ${john.BMI > mark.BMI ? "John Smith" : "Mark Miller"}'s BMI (${
+//   john.BMI > mark.BMI ? john.BMI : mark.BMI
+// })
+// is higher than ${john.BMI < mark.BMI ? "John Smith" : "Mark Miller"}'s BMI (${
+//   john.BMI < mark.BMI ? john.BMI : mark.BMI
+// }) !`);
+
+// LOOPS
+
+// for (let rep = 1; rep <= 10; rep = rep + 1) {
+//   console.log(`Lifting weight repetition ${rep} 🏋️‍♂️.`);
+// }
+
+const jonas = [
+  "Jonas",
+  "Schmedtmann",
+  2037 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"],
+];
+
+// //prvo kreiramo prazan niz
+// const types = [];
+
+// for (let i = 0; i < jonas.length; i++) {
+//   console.log(jonas[i]); //reading from jonas array
+
+//   types[i] = typeof jonas[i]; //kreiranje novog niza na osnovu postojeceg
+
+//   types.push(typeof jonas[i]);
+// } // drugi nacin kreiranja novog niza
+
+// console.log(types);
+
+//practise - calculate ages and add them to new array
+
+// const years = [1991, 2007, 1969, 2020];
+// const ages = [];
+
+// for (let i = 0; i < years.length; i++) {
+//   ages.push(2037 - years[i]); //dodajemo vrednost u niz
+// }
+// console.log(ages);
+
+//continue sluzi da izadje iz trenutne iteracije petlje i da nastavi sledecu
+// // tj pomocu 'continue' mozemo da preskacemo elemente
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] !== "string") continue; //izvlacimo samo stringove iz niza
+//   console.log(jonas[i]);
+// }
+
+// //break sluzi da izadje tj. prekine celu petlju
+// //npr. kad nadje broj, izadje iz petlje
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] === "number") break; //kad nadjes broj, BREAK
+//   console.log(jonas[i]);
+// }
+
+// looping unazad - backwards
+for (let i = jonas.length - 1; i >= 0; i--) {
+  // iteracija unazad
+  console.log(i, jonas[i]);
+}
+
+//Loop in loop
+
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`---Starting exercise ${exercise}`);
+
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Lifting weight repetition ${rep} 🏋️‍♂️`);
+  }
+}
