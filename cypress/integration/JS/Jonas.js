@@ -11,7 +11,7 @@ console.log('radoje');
 console.log('blagoje');
 */
 
-//coding chalenge 1
+//coding challenge 1
 
 // let marksHight1 = 1.69;
 // let marksWeight1 = 78;
@@ -699,17 +699,45 @@ const jonas = [
 // }
 
 // looping unazad - backwards
-for (let i = jonas.length - 1; i >= 0; i--) {
-  // iteracija unazad
-  console.log(i, jonas[i]);
-}
+// for (let i = jonas.length - 1; i >= 0; i--) {
+//   // iteracija unazad
+//   console.log(i, jonas[i]);
+// }
 
-//Loop in loop
+// //Loop in loop
 
-for (let exercise = 1; exercise < 4; exercise++) {
-  console.log(`---Starting exercise ${exercise}`);
+// for (let exercise = 1; exercise < 4; exercise++) {
+//   console.log(`---Starting exercise ${exercise}`);
 
-  for (let rep = 1; rep < 6; rep++) {
-    console.log(`Lifting weight repetition ${rep} 🏋️‍♂️`);
-  }
-}
+//   for (let rep = 1; rep < 6; rep++) {
+//    console.log(`Exercise ${exercise} : Lifting weight repetition ${rep} 🏋️‍♂️`);
+//   }
+// }
+
+//WHILE loop
+
+// let rep = 1;
+
+// while (rep <= 10) {
+//   //while - dok je ovaj uslov TRUE
+//   //while loop je raznovrsnija, sto znaci da se moze koristiti u raznim situacijama
+//   // a to sve zato sto joj NE TREBA COUNTER!!!
+//   console.log(`Lifting weight repetition ${rep} 🏋️‍♂️`);
+//   rep++;
+// }
+
+// //primer bez counter - brojaca
+
+// //bacamo kockicu dok ne dobijemo sesticu
+
+// let dice = Math.trunc(Math.random() * 6) + 1;
+// console.log(dice);
+
+// while (dice !== 6) {
+//   console.log(` You rolled a ${dice}!!!`);
+//   dice = Math.trunc(Math.random() * 6) + 1; // ponovo kreiramo novi broj koji onda opet pokrece novu iteraciju
+
+//   if (dice === 6) console.log("Loop is about to end...");
+// }
+
+//chalenge 7
