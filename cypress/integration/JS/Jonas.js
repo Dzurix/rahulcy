@@ -776,3 +776,4 @@ const calcAverage = (arr) => {
 };
 
 console.log(calcAverage(totals));
+console.log(calcAverage(tips));
