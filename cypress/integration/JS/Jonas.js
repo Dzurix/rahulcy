@@ -1,6 +1,6 @@
 "use strict";
 
-"use strict";
+//const { number } = require("assert-plus");
 
 //let firstname = "upoje";
 
@@ -653,13 +653,13 @@ console.log('blagoje');
 //   console.log(`Lifting weight repetition ${rep} 🏋️‍♂️.`);
 // }
 
-const jonas = [
-  "Jonas",
-  "Schmedtmann",
-  2037 - 1991,
-  "teacher",
-  ["Michael", "Peter", "Steven"],
-];
+// const jonas = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1991,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+// ];
 
 // //prvo kreiramo prazan niz
 // const types = [];
@@ -743,37 +743,91 @@ const jonas = [
 //chalenge 7
 
 //automatsko kreiranje novih nizova na osnovu jednog poznatog niza
-const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+// const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
 
-const tips = [];
-const totals = [];
+// const tips = [];
+// const totals = [];
 
-const calcTip = (bill) => {
-  if (bill >= 50 && bill <= 300) {
-    return bill * 0.15; //uvek mora RETURNNNNNNN,
-  } else {
-    return bill * 0.2;
+// const calcTip = (bill) => {
+//   if (bill >= 50 && bill <= 300) {
+//     return bill * 0.15; //uvek mora RETURNNNNNNN,
+//   } else {
+//     return bill * 0.2;
+//   }
+// };
+
+// for (let i = 0; i < bills.length; i++) {
+//   tips.push(calcTip(bills[i]));
+//   totals.push(bills[i] + tips[i]);
+// }
+
+// console.log(bills);
+// console.log(tips);
+// console.log(totals);
+
+// //kreiranje funkcije koja sabira sve clanove bilo kojeg niza
+// let sum = 0; // sluzi za sabiranje svih brojeva
+// const calcAverage = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     sum = sum + arr[i]; // sum += arr[i] drugi nacin pisanja
+//   }
+//   // console.log(sum / arr.length);
+//   return sum / arr.length;
+// };
+
+// console.log(calcAverage(totals));
+// console.log(calcAverage(tips));
+
+// real life problem example
+
+const temperatures = [3, -2, -6, -1, "error", 9, 13, 17, 15, 14, 9, 5];
+
+/* understanding the problem
+
+- what is temp. amplitude? answer: razlika izmedju najvise i najnize vrednosti
+- how to compute maz and min temps?
+- what's a sensor error? And what to do?
+
+
+*/
+
+/*
+how to ingore errors?
+find max value in array
+find min value in array
+subtract min from max - amplitude and return it
+  */
+
+const calcTempAmplitude = function (temps) {
+  let max = temps[0]; //pretpostavljamo da je prvi element najveca vrednost, pa onda trazimo vecu
+  let min = temps[0];
+  for (let i = 0; i < temps.length; i++) {
+    const curTemp = temps[i]; //kreirannje varijable za smestanje trenutne temperature
+
+    if (typeof curTemp !== "number") continue; //preskakanje bilo kog tipa vrednosti u nizu osim broja
+    if (curTemp > max) max = curTemp;
+    if (curTemp < min) min = curTemp;
   }
+  console.log(max, min);
+  return max - min; // returnujemo i izracunavamo amplitudu
 };
 
-for (let i = 0; i < bills.length; i++) {
-  tips.push(calcTip(bills[i]));
-  totals.push(bills[i] + tips[i]);
-}
+calcTempAmplitude([3, 7, 4, 1, 8]);
 
-console.log(bills);
-console.log(tips);
-console.log(totals);
+const amplitude = calcTempAmplitude(temperatures);
 
-//kreiranje funkcije koja sabira sve clanove bilo kojeg niza
-let sum = 0; // sluzi za sabiranje svih brojeva
-const calcAverage = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    sum = sum + arr[i]; // sum += arr[i] drugi nacin pisanja
-  }
-  // console.log(sum / arr.length);
-  return sum / arr.length;
-};
+console.log(amplitude);
 
-console.log(calcAverage(totals));
-console.log(calcAverage(tips));
+// PROBLEM 2 - Function should receive 2 arrays of temps
+
+/*
+
+1) Understanding the problem
+
+- With 2 arrays, should we implement functionality twice?  - NO is answer. Just merge two arrays
+
+2) Breaking up into sub-problems
+
+- How to merge two arrays?
+
+*/
