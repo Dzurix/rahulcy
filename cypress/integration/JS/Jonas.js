@@ -1,5 +1,9 @@
 "use strict";
 
+//const { indexOf } = require("lodash");
+
+//const { indexOf } = require("lodash");
+
 //const { number } = require("assert-plus");
 
 //let firstname = "upoje";
@@ -832,7 +836,7 @@ console.log(amplitude);   */
 - How to merge two arrays?
 
 */
-
+/*
 const calcTempAmplitudeNew = function (t1, t2) {
   const temps = t1.concat(t2); //spajanje dva niza
 
@@ -853,4 +857,31 @@ const calcTempAmplitudeNew = function (t1, t2) {
 
 const amplitudeNew = calcTempAmplitudeNew([3, 7, 4, 1, 8], [1, 3, 5, 7, 8]);
 
-console.log(amplitudeNew);
+console.log(amplitudeNew);  */
+
+//DEBUGING
+/*
+const mesureKelvin = function () {
+  const mesurement = {
+    type: "temp",
+    unit: "celsius",
+    value: Number(prompt("Degrees celsius:")), //prompt sve pretvara u string
+  };
+
+  const kelvin = mesurement.value + 273;
+  return kelvin;
+};
+
+console.log(mesureKelvin());
+*/
+
+//chalenge 8
+// const arr = [17, 21, 23];
+
+// const termometar = function (arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     console.log(`...` + `${arr[i]} C in ${arr.indexOf(arr[i]) + 1} days ...`);
+//   }
+// };
+
+// console.log(termometar(arr));
