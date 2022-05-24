@@ -780,7 +780,7 @@ console.log('blagoje');
 
 // real life problem example
 
-const temperatures = [3, -2, -6, -1, "error", 9, 13, 17, 15, 14, 9, 5];
+//const temperatures = [3, -2, -6, -1, "error", 9, 13, 17, 15, 14, 9, 5];
 
 /* understanding the problem
 
@@ -798,7 +798,8 @@ find min value in array
 subtract min from max - amplitude and return it
   */
 
-const calcTempAmplitude = function (temps) {
+/*const calcTempAmplitude = function (temps) {
+
   let max = temps[0]; //pretpostavljamo da je prvi element najveca vrednost, pa onda trazimo vecu
   let min = temps[0];
   for (let i = 0; i < temps.length; i++) {
@@ -816,7 +817,7 @@ calcTempAmplitude([3, 7, 4, 1, 8]);
 
 const amplitude = calcTempAmplitude(temperatures);
 
-console.log(amplitude);
+console.log(amplitude);   */
 
 // PROBLEM 2 - Function should receive 2 arrays of temps
 
@@ -831,3 +832,25 @@ console.log(amplitude);
 - How to merge two arrays?
 
 */
+
+const calcTempAmplitudeNew = function (t1, t2) {
+  const temps = t1.concat(t2); //spajanje dva niza
+
+  console.log(temps);
+
+  let max = temps[0]; //pretpostavljamo da je prvi element najveca vrednost, pa onda trazimo vecu
+  let min = temps[0];
+  for (let i = 0; i < temps.length; i++) {
+    const curTemp = temps[i]; //kreirannje varijable za smestanje trenutne temperature
+
+    if (typeof curTemp !== "number") continue; //preskakanje bilo kog tipa vrednosti u nizu osim broja
+    if (curTemp > max) max = curTemp;
+    if (curTemp < min) min = curTemp;
+  }
+  console.log(max, min);
+  return max - min; // returnujemo i izracunavamo amplitudu
+};
+
+const amplitudeNew = calcTempAmplitudeNew([3, 7, 4, 1, 8], [1, 3, 5, 7, 8]);
+
+console.log(amplitudeNew);
