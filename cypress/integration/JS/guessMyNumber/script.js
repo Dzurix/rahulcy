@@ -82,7 +82,7 @@ document.querySelector('.check').addEventListener('click', function () {
 //resetovanje
 
 document.querySelector('.again').addEventListener('click', function () {
-  score = 20; //reasing score
+  score = 20; //reasign score
   secretNumber = Math.trunc(Math.random() * 20) + 1; // ponovo generisemo random broj
 
   document.querySelector('.guess').value = ' ';
