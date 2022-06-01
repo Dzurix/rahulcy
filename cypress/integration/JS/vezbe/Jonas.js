@@ -884,7 +884,29 @@ console.log(mesureKelvin());
 
 function calcAge(birthYear) {
   const age = 2037 - birthYear;
-  console.log(firstName);
+
+  function printAge() {
+    const output = `You are ${age}, born in ${birthYear}.`;
+    console.log(output);
+
+    if (birthYear >= 1981 && birthYear <= 1996) {
+      var millenial = true;
+      const str = `Oh, and you're a millenial, ${firstName}.`;
+      console.log(str);
+
+      // dokaz da su funkcije BLOCK SCOPED krecuci od ES6
+
+      function add(a, b) {
+        return a + b;
+      }
+    }
+    //  console.log((str));  - ovde ce biti referenceError str is not defined
+    // to je zato sto su CONST i LET varijable BLOCK SCOPED
+
+    console.log(millenial); //VAR varijable su FUNCTION SCOPED (nisu BLOCK SCOPED)
+    // console.log(add(2, 3));  - ovde ce biti referenceError add is not defined - ALI SAMO AKO KORISTIMO 'STRICT MODE'
+  }
+  printAge();
   return age;
 }
 
