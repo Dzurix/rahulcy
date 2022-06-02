@@ -1,7 +1,5 @@
 "use strict";
 
-const { arguments } = require("commander");
-
 //let firstname = "upoje";
 
 //console.log(firstname);
