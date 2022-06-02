@@ -886,11 +886,16 @@ function calcAge(birthYear) {
   const age = 2037 - birthYear;
 
   function printAge() {
-    const output = `You are ${age}, born in ${birthYear}.`;
+    let output = `${firstName} you are ${age}, born in ${birthYear}.`;
     console.log(output);
 
     if (birthYear >= 1981 && birthYear <= 1996) {
       var millenial = true;
+
+      const firstName = "Steven"; // Kreiranje nove varijable sa istim imenom kao varijabla iz spoljasnjeg SCOPE
+
+      output = "New OUTPUT"; // Reasigning outer scope's variable
+
       const str = `Oh, and you're a millenial, ${firstName}.`;
       console.log(str);
 
@@ -905,6 +910,8 @@ function calcAge(birthYear) {
 
     console.log(millenial); //VAR varijable su FUNCTION SCOPED (nisu BLOCK SCOPED)
     // console.log(add(2, 3));  - ovde ce biti referenceError add is not defined - ALI SAMO AKO KORISTIMO 'STRICT MODE'
+
+    console.log(output);
   }
   printAge();
   return age;
