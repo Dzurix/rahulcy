@@ -1,5 +1,7 @@
 "use strict";
 
+const { arguments } = require("commander");
+
 //let firstname = "upoje";
 
 //console.log(firstname);
@@ -988,3 +990,51 @@ const f = jonas.calcAge;
 
 f(); // ovde je undefined, posto f nije zakacena na objekat (samo je regularni poziv funkcije)
 */
+var firstName = "Matilda"; //posto je VAR, time kreiramo property u GLOBAL objectu (Window) i zato cemo dobiti preko THIS ovaj rezultat
+
+const jonas = {
+  firstName: "Jonas",
+  year: 1991,
+  calcAge: function () {
+    console.log(2037 - this.year);
+
+    // const self = this; //rezultat je Jonas - I nacin da izbegnemo undefined
+
+    // const isMilenial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year <= 1996); // PRVI nacin da izbegnemo da THIS bude undefined
+    //   console.log(this.year >= 1981 && this.year <= 1996); // rezultat je udefined posto regularni poziv funkcije, postavlja THIS u UNDEFINED
+    // };
+
+    // DRUGI nacin da izbegnemo undefined - koriscenje ARROW funkcije , jer ona nema svoj THIS
+
+    const isMilenial = () => {
+      //ovako kada pozovemo funkciju, potrazice THIS od roditelja, a to je Jonas
+      console.log(this);
+
+      console.log(this.year >= 1981 && this.year <= 1996); //
+    };
+
+    isMilenial(); // ovo je regularlni poziv funkcije
+  },
+
+  greet: () => console.log(`Hey ${this.firstName}`),
+};
+
+jonas.greet(); // rezultat je undefined, posto arrow function nemaju svoj this, nego uzimaju od roditelja, a to je ovde global SCOPE
+
+// Arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments); // arguments keyword
+  return a + b;
+};
+
+addExpr(2, 5);
+addExpr(2, 5, 8, 12); // mozemo dodavati i vise argumenata, u ovom slucaju nemaju ime, ALI POSTOJE
+
+var addArow = (a, b) => {
+  console.log(arguments); //ne postoji arguments u arrow function
+  return a + b;
+};
+
+addArow(2, 5, 8); // arguments is not defined
