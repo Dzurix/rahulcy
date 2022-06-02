@@ -881,7 +881,7 @@ console.log(mesureKelvin());
 // console.log(termometar(arr));
 
 // vezbanje SCOPING IN PRACTICE
-
+/*
 function calcAge(birthYear) {
   const age = 2037 - birthYear;
 
@@ -918,4 +918,73 @@ function calcAge(birthYear) {
 }
 
 const firstName = "Jonas";
+calcAge(1991);     */
+
+//VEZBANJE HOISTING
+
+// //varijable
+// console.log(me); //reference error daju sve tri, jer su u TDZ
+// console.log(job);
+// console.log(year);
+
+// var me = "Jonas";
+// let job = "teacher";
+// const year = 1991;
+
+// //functions
+
+// console.log(addDecl); //ovo moze, jer je deklaracija I SAMO ONA MOZE DA SE POZIVA pre deklarisanja
+// console.log(addExpr); // ova ne moze jer su varijabla, tj u TDZ
+// console.log(addArow); // undefined je posto je var hoistovana, (npr. tada pozivamo undefined(2,3))
+
+// function addDecl(a, b) {
+//   return a + b;
+// }
+
+// const addExpr = function (a, b) {
+//   return a + b;
+// };
+
+// var addArow = (a, b) => a + b;
+
+//Vezbanje THIS keyword
+
+/*  
+console.log(this); // ovde dobijamo window object
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this); // posto je 'strict' mode, ovde je undefined (inace isto daje window object u obicnom modu)
+};
+
 calcAge(1991);
+
+const calcAgeArrow = (birthYear) => {
+  console.log(2037 - birthYear);
+  console.log(this); // posto arrow funcije nemaju this, onda je this roditelja, u ovom slucaju isto window, jer je global scope
+};
+
+calcAgeArrow(1980);
+
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(2037 - this.year);
+    console.log(this);
+  },
+};
+
+jonas.calcAge(); //rezultat je upravo ceo jonas objekat *OBJEKAT KOJI POZIVA METOD*
+
+const matilda = {
+  age: 2017,
+};
+
+matilda.calcAge = jonas.calcAge; // pozajmljivanje metoda iz jednog objekta u drugi (BEZ POZIVANJA-ZAGRADA)
+
+matilda.calcAge(); // rezultat je objekat matilda, a ne jonas, ,sto znaci da THIS upucuje na OBJEKAT koji poziva metod
+
+const f = jonas.calcAge;
+
+f(); // ovde je undefined, posto f nije zakacena na objekat (samo je regularni poziv funkcije)
+*/
