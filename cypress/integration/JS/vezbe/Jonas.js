@@ -1096,8 +1096,41 @@ const restaurant = {
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
   mainMenu: ["Pizza", "Pasta", "Risotto"],
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
 };
 
 const arr = [2, 3, 4];
 
 const [a, b, c] = arr; //destruktuiranje array
+const [first, second] = restaurant.categories; //prvi i drugi element
+let [prvi, , drugi] = restaurant.categories; // preskakanje elementa (izvlacimo prvi i treci element)
+console.log(prvi, drugi);
+
+// zamena varijabli
+[prvi, drugi] = [drugi, prvi]; // zamena varijabli pomocu destructuringa
+console.log(prvi, drugi);
+
+// primena destructuringa kod funkcija koja vraca niz i mozemo odma destrucuirati rezultat u vise varijabli
+
+const [starter, main] = restaurant.order(2, 0);
+console.log(starter, main);
+
+// nested destructuring array - niz unutar niza
+
+const nested = [2, 4, [5, 6]];
+
+//const [i, , j] = nested; // hvatanje prvog i treceg elementa
+// console.log(i, j);
+
+const [i, , [j, k]] = nested; // destructuring nested elements
+
+console.log(i, j, k);
+
+// setovanje default vrednosti varijabli destucturinga
+// ovo se koristi kada NE ZNAMO DUZINU ARRAY
+
+const [p = 1, q = 1, r = 1] = [8, 9];
+console.log(p, q, r);
