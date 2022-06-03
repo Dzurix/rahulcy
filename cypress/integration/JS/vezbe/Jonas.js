@@ -988,6 +988,7 @@ const f = jonas.calcAge;
 
 f(); // ovde je undefined, posto f nije zakacena na objekat (samo je regularni poziv funkcije)
 */
+/*
 var firstName = "Matilda"; //posto je VAR, time kreiramo property u GLOBAL objectu (Window) i zato cemo dobiti preko THIS ovaj rezultat
 
 const jonas = {
@@ -1036,3 +1037,67 @@ var addArow = (a, b) => {
 };
 
 addArow(2, 5, 8); // arguments is not defined
+*/
+
+// PRIMITIVES VS OBJECTS
+
+// PRIMITIVE TYPES
+
+/*
+let lastName = "Wiliams";
+let oldLastName = lastName;
+lastName = "Davis";
+console.log(lastName, oldLastName); // rezultat je 'Davis Wiliams'
+
+// OBJECTS - REFERENCE types
+const jesica = {
+  firstName: "Jesica",
+  lastName: "Wililams",
+  age: 27,
+};
+
+const mariedJesica = jesica;
+mariedJesica.lastName = "Davis";
+// rezultati za oba sledeca slucaja je 'Davis', zbog svega objesnjenog o objektima
+console.log("Before mariage", jesica);
+console.log("After mariage", mariedJesica);
+*/
+// mariedJesica = {} OVO NE MOZE, jer je CONST i sacuvace se na drugoj poziciji u memoriji
+//- ne mozemo menjati adresu u CALL STACK jer je CONST
+//samim tim i referenca ka toj poziciji u memoriji ce morati da se promeni a to ne moze jer je CONST
+// da je LET u pitanju, onda MOZE
+
+// KOPIRANJE OBJEKATA
+
+/*const jesica2 = {
+  firstName: "Jesica",
+  lastName: "Wililams",
+  age: 27,
+};
+
+const jesicaCopy = Object.assign({}, jesica2); // nacin kopiranja, tj mergovanje objekta sa praznim objektom :D
+jesicaCopy.lastName = "Davis";
+// - uspesno 'kopiranje' objekata
+console.log("Before mariage", jesica2);
+console.log("After mariage", jesicaCopy);   */
+
+//DESTRUCTURING
+
+// destructuring Arrays
+
+// Data needed for a later exercise
+//const flights =
+//  "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
+
+// Data needed for first part of the section
+const restaurant = {
+  name: "Classico Italiano",
+  location: "Via Angelo Tavanti 23, Firenze, Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
+};
+
+const arr = [2, 3, 4];
+
+const [a, b, c] = arr; //destruktuiranje array
