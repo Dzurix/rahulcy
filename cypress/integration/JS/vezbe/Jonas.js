@@ -1090,7 +1090,7 @@ console.log("After mariage", jesicaCopy);   */
 //  "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
 // Data needed for first part of the section
-const restaurant = {
+/*const restaurant = {
   name: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
@@ -1100,8 +1100,9 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-};
+};   */
 
+/* 
 const arr = [2, 3, 4];
 
 const [a, b, c] = arr; //destruktuiranje array
@@ -1133,4 +1134,103 @@ console.log(i, j, k);
 // ovo se koristi kada NE ZNAMO DUZINU ARRAY
 
 const [p = 1, q = 1, r = 1] = [8, 9];
-console.log(p, q, r);
+console.log(p, q, r); */
+
+// Destructuring Objects
+
+// Data needed for a later exercise
+const flights =
+  "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
+
+// Data needed for first part of the section
+const restaurant = {
+  name: "Classico Italiano",
+  location: "Via Angelo Tavanti 23, Firenze, Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
+
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = "20:00",
+    address,
+  }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+};
+
+restaurant.orderDelivery({
+  time: "22:30",
+  address: "Via del Sole 21",
+  mainIndex: 2,
+  starterIndex: 2,
+});
+
+restaurant.orderDelivery({
+  address: "Futoska 89",
+  starterIndex: 1,
+});
+
+const { name, openingHours, categories } = restaurant; // sintaksa object destructuring
+console.log(name, openingHours, categories);
+
+//sta da radimo kada hocemo da se imena varijabli razlikuju od property imena
+
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+
+console.log(restaurantName, hours, tags);
+
+//definisanje default vrednosti
+// Ovo je korisno kada izvlacimo podatke sa nekog API ili neceg drugog, npr. kod property koji ne postoje
+
+const { menu = [], starterMenu: starters = [] } = restaurant; // menu je prazan array, a starters preuzima vrednosti starterMenu iz objekta posto postoje
+
+console.log(menu, starters);
+
+//zamena varijabli kod objekata
+
+let a = 111;
+let b = 999;
+
+const obj = { a: 23, b: 7, c: 14 };
+
+//  {a,b} = obj; - ovo se ne moze ovako napisati, jer dobijemo syntax Error
+// kada zapocinjemo liniju sa viticastim zagradama JS ocekuje CODE BLOCK ,
+// a posto nista se ne moze asignovati CODE BLOCKu, moramo staviti obicnu zagradu, ovako
+({ a, b } = obj);
+
+console.log(a, b);
+
+// Nested objects
+
+const {
+  fri: { open, close },
+} = openingHours;
+
+console.log(open, close);
