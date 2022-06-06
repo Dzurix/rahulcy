@@ -1139,6 +1139,7 @@ console.log(p, q, r); */
 // Destructuring Objects
 
 // Data needed for a later exercise
+
 const flights =
   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
@@ -1178,6 +1179,15 @@ const restaurant = {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
+  },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(` Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
   },
 };
 
@@ -1234,3 +1244,90 @@ const {
 } = openingHours;
 
 console.log(open, close);
+
+// THE SPREAD OPERATOR
+
+const arr = [7, 8, 9];
+const newArr = [1, 2, ...arr]; // sintaksa
+console.log(newArr);
+
+console.log(...newArr); //pojedinacno logovanje svakog clana niza - expandovanje
+
+const newMenu = [...restaurant.mainMenu, "Gnocci"]; //dodavanje novog elementa postojecem nizu i
+console.log(newMenu); // samim tim kreiranje novog niza
+
+// Copy array
+
+const mainMenuCopy = [...restaurant.mainMenu]; //kopiranje 'shalow'
+// Spajanje dva niza
+const menu1 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu1);
+
+// primena kod stringova
+
+const str = "Jonas";
+const letters = [...str, "", "S."];
+//console.log(`${...str}` Schmedtmann);
+
+// primena kod funkcija
+
+//  const ingredients = [
+//   prompt("Let's make pasta! Ingredient 1 ?"),
+//   prompt("Let's make pasta! Ingredient 2 ?"),
+//   prompt("Let's make pasta! Ingredient 3 ?"),
+// ];
+// console.log(ingredients);
+
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);  ovako bi radili da nema SPREAD
+//restaurant.orderPasta(...ingredients); // mnogo lakse za pisanje pomocu SPREAD
+
+//Objects
+
+const newRestaurant = { ...restaurant, founder: "Guissepe", foundedIn: 1998 };
+
+console.log(newRestaurant);
+
+// REST operator
+
+const [ab, ba, ...others] = [1, 2, 3, 4, 5]; // ab = 1 , ba = 2, others = [3,4,5]
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+// REST kod OBJEKATA
+
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+//Rest kod funkcija
+
+const sabiranjeXelemenata = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+    console.log(sum);
+  }
+};
+
+restaurant.orderPizza("mushrooms", "onion", "olives", "spinach");
+
+//
+console.log(3 || "jonas");
+
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10; // guest 1 je isto sto i numGuests ako postoji, ako ne, onda je 10
+
+//pomocu short circuitinga, ovo mozemo jednostavnije napisati
+
+const guest2 = restaurant.numGuests || 10; //
+
+// primer za && operator
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinac");
+}
+// mozemo i ovako jednostavnije napisati
+
+restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinac");
