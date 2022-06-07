@@ -1343,6 +1343,7 @@ const rest1 = {};
 (name1 = "Capri"), (numGuests1 = 20);
 */
 
+/*
 //CHALENGE 9
 
 const game = {
@@ -1413,3 +1414,43 @@ console.log(game.printGoals(game.scored));
 
 //7
 team1 < team2 && console.log("Team 1 is more likely to win");
+*/
+
+// FOR OF LOOP
+/*
+//sintaksa
+for (const item of menu) console.log(item);
+
+// Način kako da dobijemo i indeks i element iz FOR OF LOOPA
+for (const item of menu.entries()) console.log(item);
+
+//Destructuring kod for of LOOPA - sve što je niz se moze destructuirati
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}} `);
+}
+*/
+//Enhanced object literals
+
+const radnoVreme = {
+  thu: {
+    open: 12,
+    closed: 22,
+  },
+  fri: {
+    open: 11,
+    closed: 23,
+  },
+  sat: {
+    open: 0,
+    close: 24,
+  },
+};
+
+const restoran = {
+  ime: "Clasico",
+  osnovan: 2999,
+  radnoVreme, // I nacin pisanja
+  //bukvalno samo prepisemo ime vec definisanog objekta
+};
+
+console.log(restoran);
