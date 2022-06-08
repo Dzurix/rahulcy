@@ -1430,7 +1430,7 @@ for (const [i, el] of menu.entries()) {
 }
 */
 //Enhanced object literals
-
+/*
 const weekdays = ["thu", "fri", "sat"];
 const radnoVreme = {
   [weekdays[0]]: { stalno }, //treci nacin pisanja, kada JS treba da COMPUTE
@@ -1481,3 +1481,23 @@ console.log(restaurant.order?.(1, 2) ?? "Methos does not exist");
 
 const users = [{ names: "Jonas", email: "lolo", old: 3000 }];
 console.log(users[0]?.names ?? "Ovo je prazan niz");
+*/
+
+// Looping objects preko keys (names)
+
+for (const day of Object.keys(openingHours)) {
+  console.log(day);
+}
+
+// looping objects preko values
+
+const values = Object.values(openingHours);
+console.log(values);
+
+// Za  LOOP preko celog objekta nam treba ENTRIES (vraca key (names) + values)
+
+const entries = Object.entries(openingHours);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} anc close at ${close}`);
+}
