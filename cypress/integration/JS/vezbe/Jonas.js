@@ -1482,7 +1482,7 @@ console.log(restaurant.order?.(1, 2) ?? "Methos does not exist");
 const users = [{ names: "Jonas", email: "lolo", old: 3000 }];
 console.log(users[0]?.names ?? "Ovo je prazan niz");
 */
-
+/*
 // Looping objects preko keys (names)
 
 for (const day of Object.keys(openingHours)) {
@@ -1500,4 +1500,84 @@ const entries = Object.entries(openingHours);
 
 for (const [key, { open, close }] of entries) {
   console.log(`On ${key} we open at ${open} anc close at ${close}`);
+}
+*/
+
+//Chalenge 10
+
+const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+  printGoals: function (...names) {
+    let [abc] = names;
+    console.log(
+      `The players are ${names}, and the number of goals is ${abc.length}`
+    );
+  },
+};
+
+//1
+//const scoress = Object.entries(game.scored); GRESKA, OVO JE ARRAY a on se ovako koristi
+
+const scoress = game.scored.entries(); // za loopovanje nam treba metod .entries
+
+for (const [goal, players] of scoress) {
+  console.log(`Goal ${goal + 1}: ${players}`);
+}
+
+//2
+
+const odds = Object.values(game.odds); // ovo je za loopovanja na OBJEKTU
+let average = 0;
+
+for (const odd of odds) {
+  average += odd;
+}
+average /= odds.length;
+console.log(average);
+
+//3
+
+const sanse = Object.entries(game.odds);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === "x" ? "draw" : `victory ${game[team]}`;
+
+  console.log(`Odd of ${teamStr} ${odd}`);
 }
