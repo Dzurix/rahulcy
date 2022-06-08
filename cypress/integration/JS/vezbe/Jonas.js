@@ -1431,19 +1431,12 @@ for (const [i, el] of menu.entries()) {
 */
 //Enhanced object literals
 
+const weekdays = ["thu", "fri", "sat"];
 const radnoVreme = {
-  thu: {
-    open: 12,
-    closed: 22,
-  },
-  fri: {
-    open: 11,
-    closed: 23,
-  },
-  sat: {
-    open: 0,
-    close: 24,
-  },
+  [weekdays[0]]: { stalno }, //treci nacin pisanja, kada JS treba da COMPUTE
+  [weekdays[1]]: { ponekad },
+  sat: { nikad },
+  [`day - ${2 + 1}`]: { nikad }, // treci nacin pisanja}
 };
 
 const restoran = {
@@ -1451,6 +1444,40 @@ const restoran = {
   osnovan: 2999,
   radnoVreme, // I nacin pisanja
   //bukvalno samo prepisemo ime vec definisanog objekta
+
+  order(starterIndex, mainIndex) {
+    // II nacin pisanja - izbacili smo : i function rec
+    return this.starterMenu(starterIndex), this.mainMenu(mainIndex);
+  },
 };
 
 console.log(restoran);
+
+//stari nacin utvrdjivanja da li neki property postoji u objektu
+if (restaurant.openingHours && restaurant.openingHours.monday)
+  console.log(restaurant.openingHours.monday.open);
+
+//bez optional chaining
+console.log(restaurant.openingHours.monday.open); //ovde se dobija reference error, zato sto pozivamo
+// nepostojeci property (ako 'monday' nije definisano dobijamo UNDEFINED) i onda pozivamo jos jedan property 'open'
+// na UNDEFINED i tu dobijamo REFERENCE ERROR
+
+// Optional chaining
+console.log(restaurant.openingHours.monday?.open); //ovde gde moze nastati problem, a to je 'monday', koristimo
+//optional chaining pomocu ?. i kazemo ako postoji 'monday', daj mi 'open'
+//NARAVNO ako ne postoji odmah cemo dobiti UNDEFINED i nece proveravati 'open' i tako izbegavamo 'REFERENCE ERROR'
+
+//primer primene
+const days = ["mon", "thu", "wed", "thu", "fri", "sat", "sun"];
+
+for (let day of days) {
+  const open = restaurant.openingHours[day]?.open ?? "closed";
+  console.log(`On ${day}, we are open at ${open}`);
+}
+// rad sa metodama
+console.log(restaurant.order?.(1, 2) ?? "Methos does not exist");
+
+//rad sa nizovima
+
+const users = [{ names: "Jonas", email: "lolo", old: 3000 }];
+console.log(users[0]?.names ?? "Ovo je prazan niz");
