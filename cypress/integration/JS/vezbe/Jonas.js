@@ -1502,7 +1502,7 @@ for (const [key, { open, close }] of entries) {
   console.log(`On ${key} we open at ${open} anc close at ${close}`);
 }
 */
-
+/*
 //Chalenge 10
 
 const game = {
@@ -1581,3 +1581,129 @@ for (const [team, odd] of Object.entries(game.odds)) {
 
   console.log(`Odd of ${teamStr} ${odd}`);
 }
+*/
+/*
+const orderSet = new Set(["Pizza", "Pizza", "Pasta", "Rissoto", "Rissoto"]);
+
+console.log(orderSet); // dobijemo svaki clan SAMO jednom
+
+console.log(new Set("Jonas")); // dobijemo svako slovo pojedinacno
+console.log(orderSet.size); // SET za veličinu koristi metod SIZE, dok ARRAY ima LENGTH
+console.log(orderSet.has("Bread")); // SET za proveru da li postoji koristi metod HAS, dok ARRAY ima INCLUDES
+orderSet.add("Garlic Bread"); //dodavanje dva elementa u SET
+orderSet.add("Garlic Bread");
+console.log(orderSet); // SET je uvecan SAMO za jedan 'Garlic Bread'
+orderSet.delete("Rissoto"); //brisanje elementa
+//orderSet.clear(); // brisanje SVIH ELEMENATA
+
+//SETS su ITERABLES, sto znaci da mozemo da LOOPujemo nad njima
+
+for (const order of orderSet) {
+  console.log(order);
+}
+
+// OSNOVNA NAMENA SETOVA JE DA UKLONE DUPLIKATE IZ ARRAYS!!!
+
+const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "waiter"];
+
+const staffUnique = [...new Set(staff)]; //ako hocemo da SET pretvorimo u ARRAY radimo preko SPREAD operatora
+
+console.log(staffUnique); // SETS nisu case sensitive, sto znaci da se i mali 'waiter' pojavio kao poseban element
+
+console.log(new Set(staff).size); // ako hocemo da vidimo koliko UNIQUE vrednosti ima u SET
+
+console.log(new Set("jonasschmedtmann").size); // da vidimo koliko razlicitih slova ima u stringu
+*/
+/*
+const rest = new Map();
+rest.set("name", "Classico Italiano"); //kod kreiranja MAPS, najlakse je prvo da kreiramo praznu MAPS, a onda da je popunimo koristimo metod .set
+
+rest.set(1, "Firenze, Italy");
+console.log(rest.set(2, "Lisbon, Portugal")); //kada se pozove set metod na ovaj način, ne samo da se updajtuju mape nad kojom je pozvan, već i returnuje mape u isto vreme
+
+// zbog toga mozemo da radimo chaining - dodatno uvezivanje
+
+rest
+  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open")
+  .set(false, "We are closed");
+
+//da čitamo podatke iz mape koristimo GET metod na ime KEY
+
+console.log(rest.get("name")); // kada pozivamo pomocu GET bitan je tip podatka od KEY, tj. da bude isti kao sto smo ga definisali
+console.log(rest.get(true));
+
+//vezba
+const time = 21;
+console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
+
+//ostali metodi
+
+console.log(rest.has("categories"));
+rest.delete(2);
+console.log(rest);
+console.log(rest.size);
+rest.clear();
+console.log(rest);
+
+//koristenje ARRAY kao MAPS KEYS
+
+rest.set([1, 2], "Test"); // OVO MOZE, ubacili smo novi key value pair
+console.log(rest);
+
+console.log(rest.get([1, 2])); // OVO NE MOZE vraca UNDEFINED
+
+//Uzimanje arraya kao KEY u mapi i način pristupa podacima - tako sto array prebacimo u varijablu
+// - zato što kada koristimo get, to nije isti objekat u HEAP
+const arr = [1, 2];
+
+rest.set(arr, "test");
+console.log(rest.get(arr));
+
+// koristenje OBJECTS kao MAPS KEYS
+
+rest.set(document.querySelector("h1"), "Heading");
+console.log(rest);
+
+
+*/
+
+// popunjavanje MAPS pomocu ARRAY
+
+const question = new Map([
+  ["question", "What is the best programming alnguage in the world?"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "JavaScript"],
+  ["correct", 3],
+  [true, "Correct 🎉"],
+  [false, "Try again!!!"],
+]);
+console.log(question);
+
+//Način konverzije OBJECTS u MAPS - zato što ima istu struktura kao niz nizova
+//console.log(Object.entries(openingHours));
+//const hoursMap = new Map(Object.entries(openingHours));
+//console.log(hoursMap);
+
+//Iteration u Maps je moguća jer su MAPS isto iterable što znači da je FOR LOOP moguć i u njima
+
+//KVIZ APP
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  if (typeof key === "number") console.log(`Answer ${key}: ${value}`);
+}
+
+const answer = Number(prompt("Your answer"));
+
+//console.log(answer === 3 ? question.get(true) : question.get(false));  I nacin kako mozemo
+console.log(question.get(question.get("correct") === answer));
+
+//Konvertovanje Mape nazad u ARRAY - izgradititi novi ARRAY i onda ga otpakovati pomoću SPREAD
+
+console.log(...question);
+console.log([...question.entries()]);
+console.log([...question.keys()]);
+console.log([...question.values()]);
