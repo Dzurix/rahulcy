@@ -1725,7 +1725,7 @@ const gameEvents = new Map([
 ]);
 
 // 1
-const events = new Set(gameEvents.values());
+const events = [...new Set(gameEvents.values())];
 
 console.log(events);
 
@@ -1740,7 +1740,8 @@ console.log(`An event happened, on average, every ${90 / average} minutes.`);
 
 //4
 
-for (const i of gameEvents) {
+for (const [i, y] of gameEvents) {
   // rrrrrrrrrrrdeeeerrrvcyjuf8swk8kog98ysd7glo   Dejina prva linija koda <3
-  console.log(`[First half]:` + i);
+
+  console.log(i <= 45 ? `[First half] ${i}:${y}` : `[Second half ${i}:${y}]`);
 }
