@@ -1670,40 +1670,77 @@ console.log(rest);
 
 */
 
-// popunjavanje MAPS pomocu ARRAY
+// // popunjavanje MAPS pomocu ARRAY
 
-const question = new Map([
-  ["question", "What is the best programming alnguage in the world?"],
-  [1, "C"],
-  [2, "Java"],
-  [3, "JavaScript"],
-  ["correct", 3],
-  [true, "Correct 🎉"],
-  [false, "Try again!!!"],
+// const question = new Map([
+//   ["question", "What is the best programming alnguage in the world?"],
+//   [1, "C"],
+//   [2, "Java"],
+//   [3, "JavaScript"],
+//   ["correct", 3],
+//   [true, "Correct 🎉"],
+//   [false, "Try again!!!"],
+// ]);
+// console.log(question);
+
+// //Način konverzije OBJECTS u MAPS - zato što ima istu struktura kao niz nizova
+// //console.log(Object.entries(openingHours));
+// //const hoursMap = new Map(Object.entries(openingHours));
+// //console.log(hoursMap);
+
+// //Iteration u Maps je moguća jer su MAPS isto iterable što znači da je FOR LOOP moguć i u njima
+
+// //KVIZ APP
+// console.log(question.get("question"));
+// for (const [key, value] of question) {
+//   if (typeof key === "number") console.log(`Answer ${key}: ${value}`);
+// }
+
+// const answer = Number(prompt("Your answer"));
+
+// //console.log(answer === 3 ? question.get(true) : question.get(false));  I nacin kako mozemo
+// console.log(question.get(question.get("correct") === answer));
+
+// //Konvertovanje Mape nazad u ARRAY - izgradititi novi ARRAY i onda ga otpakovati pomoću SPREAD
+
+// console.log(...question);
+// console.log([...question.entries()]);
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
+
+// Chalenge 11
+
+const gameEvents = new Map([
+  [17, "⚽ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🟨 Yellow card"],
+  [69, "🟥 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽ GOAL"],
+  [80, "⚽ GOAL"],
+  [92, "🟨 Yellow card"],
 ]);
-console.log(question);
 
-//Način konverzije OBJECTS u MAPS - zato što ima istu struktura kao niz nizova
-//console.log(Object.entries(openingHours));
-//const hoursMap = new Map(Object.entries(openingHours));
-//console.log(hoursMap);
+// 1
+const events = new Set(gameEvents.values());
 
-//Iteration u Maps je moguća jer su MAPS isto iterable što znači da je FOR LOOP moguć i u njima
+console.log(events);
 
-//KVIZ APP
-console.log(question.get("question"));
-for (const [key, value] of question) {
-  if (typeof key === "number") console.log(`Answer ${key}: ${value}`);
+//2
+gameEvents.delete(64);
+console.log(gameEvents);
+
+//3
+const average = gameEvents.size;
+
+console.log(`An event happened, on average, every ${90 / average} minutes.`);
+
+//4
+
+for (const i of gameEvents) {
+  // rrrrrrrrrrrdeeeerrrvcyjuf8swk8kog98ysd7glo   Dejina prva linija koda <3
+  console.log(`[First half]:` + i);
 }
-
-const answer = Number(prompt("Your answer"));
-
-//console.log(answer === 3 ? question.get(true) : question.get(false));  I nacin kako mozemo
-console.log(question.get(question.get("correct") === answer));
-
-//Konvertovanje Mape nazad u ARRAY - izgradititi novi ARRAY i onda ga otpakovati pomoću SPREAD
-
-console.log(...question);
-console.log([...question.entries()]);
-console.log([...question.keys()]);
-console.log([...question.values()]);
