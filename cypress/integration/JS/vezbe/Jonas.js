@@ -1708,6 +1708,7 @@ console.log(rest);
 // console.log([...question.keys()]);
 // console.log([...question.values()]);
 
+/*
 // Chalenge 11
 
 const gameEvents = new Map([
@@ -1745,3 +1746,157 @@ for (const [i, y] of gameEvents) {
 
   console.log(i <= 45 ? `[First half] ${i}:${y}` : `[Second half ${i}:${y}]`);
 }
+
+*/
+
+const airline = "TAP Air Portugal";
+const plane = "A320";
+
+console.log(plane[0]); //dobijemo A
+console.log("B737"[0]); // dobijemo B
+console.log(airline.length);
+// stringovi imaju slicne metoda kao i ARRAYs
+console.log(airline.indexOf("r")); // dobijemo 6 - STRINGOVI SU Zero-Indexed
+console.log(airline.lastIndexOf("r")); // dobijemo 10 -- pretrazivanje slova u STRINGU
+console.log(airline.indexOf("Portugal")); // dobijemo 8 - case sensitive i izvlacenje cele reci iz stringa
+
+// Namena indeksiranja u STRING - izvlacenje delova STRING pomocu SLICE metoda
+
+console.log(airline.slice(4)); // rezultat je 'Air Portugal' - to je SUBSTRING - deo originalnog STRING
+// ovo NE MENJA GLAVNI STRING zato sto je
+//Nemoguće  menjati stringove jer su PRIMITIVES. Svi metodi koje koristimo vraćaju NOVE STRINGove
+
+console.log(airline.slice(4, 7)); // dobijemo 'Air'
+//slice (4,7) znači ustvari četvrta pozicija i čita samo do šeste pozicije u stringu
+// (dužina stringa ću uvek biti krajnja minus početna pozicija - u ovom slučaju to je 7-4=3)
+
+//ekstraktovanje stringa bez hardkodinga - samo na osnovu indexOf i last idenx of
+console.log(airline.slice(0, airline.indexOf(" "))); // izvlacenje prve reci
+console.log(airline.slice(airline.lastIndexOf(" ") + 1)); // +1 da bi izbacili razmak ispred reci
+
+//definisanje negativnih početnih argumenata - kreće sa kraja
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1)); //dobijemo 'AP Air Portuga'
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  seat.slice(-1) === "B" || seat.slice(-1) === "E"
+    ? console.log(`${seat} is middleseat`)
+    : console.log(`${seat} is NOT middleseat`);
+};
+
+checkMiddleSeat("11B");
+checkMiddleSeat("23C");
+checkMiddleSeat("3E");
+
+//changing the case
+
+console.log(airline.toLocaleLowerCase());
+console.log(airline.toUpperCase());
+
+//Fix capitalization in name
+
+const passenger = "jOnAS"; // Jonas
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+//Comparing emails
+
+const email = "hello@jonas.io";
+const loginEmail = "  Hello@Jonas.IO \n ";
+
+//const lowerEmail = loginEmail.toLowerCase();
+//const trimedEmail = lowerEmail.trim(); // da se resimo SPACE i ENTER
+
+//mozemo i vise metoda pozivati
+const normalizedEmail = loginEmail.toLowerCase().trim();
+
+//Replace parts of string
+
+const priceGB = "288,97%";
+const priceUS = priceGB.replace("%", "$").replace(",", ".");
+
+//replace stvara novi string, ne menja prvobitni
+const announcment =
+  "All passengers come to boarding door 23. Boarding door 23!";
+//samo se menja prvo pojavljivanje reči koje hoćemo da promenimo, tek kad se uvede REPLACEaLL, onda će moći
+console.log(announcment.replaceAll("door", "gate"));
+
+//tri metoda STRINGa koja vraćaju BOOLEANS - 'includes', 'starts' with i 'ends with'
+
+const newPlane = "Airbus A320neo";
+
+console.log(newPlane.includes("A320"));
+console.log(newPlane.endsWith("Boeing"));
+console.log(newPlane.startsWith("Air"));
+
+// Practice exercise
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes("knife") || baggage.includes("gun")) {
+    console.log("You are NOT allowed on board.");
+  } else {
+    console.log("Welcome aboard!");
+  }
+};
+checkBaggage("I have a laptop, some Food and a pocket Knife");
+checkBaggage("Socks and cammera");
+checkBaggage("Got some snacks and a gun for protection");
+
+//SPLIT metod
+//SPLIT metod omogućava deljenje na više delova pomoću devidera
+
+console.log("a+very+nice+string".split("+")); //devider je +
+console.log("Jonas Schmedtmann".split(" "));
+
+const [firstName, lastName] = "Jonas Schemedtmann".split(" ");
+//join metod je suprotnost od split metoda
+const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log(newName);
+
+//Pisanje velikog slova
+
+const capitalizeName = function (name) {
+  const names = name.split(" ");
+  const namesUpper = [];
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    // namesUpper.push(n.replace(n[0], n[0].toUpperCase()));  // Drugi nacin
+  }
+
+  console.log(namesUpper.join(" "));
+};
+
+capitalizeName("jessica ann smith davis");
+capitalizeName("jonas schmedtmann");
+
+//padding a string znači dodati tačan broj karaktera do željene dužine stringa
+
+const massage = "Go to gate 23!";
+
+console.log(massage.padStart(20, "+").padEnd(30, "+"));
+console.log("Jonas".padEnd(20, "+").padStart(30, "+"));
+
+//primer sakrivanja brojeva kod kreditne kartice
+const maskCreditCard = function (number) {
+  const str = number + ""; // kada je jedan od operanada sa znakom plus STRING, sve se konvertuje u STRING
+  const last = str.slice(-4); // poslednja cetiri broja necemo maskirati
+  return last.padStart(str.length, "*");
+};
+
+console.log(maskCreditCard(12546546546546545));
+console.log(maskCreditCard("54651045161564165146"));
+
+//repeat method- ponavlja isti STRING više puta
+
+const message2 = "Bad weather...All Departures Delayes... ";
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${"✈".repeat(n)}`);
+};
+planesInLine(5);
+planesInLine(4);
