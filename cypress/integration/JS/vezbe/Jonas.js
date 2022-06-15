@@ -1926,7 +1926,7 @@ const changeCase = function (word) {
   console.log(`${newCase.padEnd(25, ' ')}` + `${'✅'.repeat()}`);
 };
 //string methods practice
-changeCase('  calculate_AGE');  */
+changeCase('  calculate_AGE');  
 
 const getCode = str => str.slice(0, 3).toUpperCase();
 
@@ -1943,3 +1943,85 @@ for (const flight of flights.split('+')) {
   );
   console.log(output);
 }
+*/
+/*
+// default parametri
+
+const bookings = [];
+
+const createBooking = function (
+  flightNum,
+  passengers = 1,
+  price = 199 * passengers
+) {
+  //ES6 setovanje default vrednosti
+  //ES5 nacin kako se setovao default
+  //price = price || 100;
+  //passengers = passengers || 2
+  const booking = {
+    flightNum,
+    passengers,
+    price,
+  };
+  console.log(booking);
+  bookings.push(booking);
+};
+
+createBooking('LH123', undefined, 3);
+createBooking('LH123');
+createBooking('LH123', 2, 800);
+createBooking('LH123', 2);
+createBooking('L123', 5);
+*/
+/*
+const flight = 'LH123';
+const jonas = {
+  name: 'Jonas Schmedtmann',
+  passport: 1235465465,
+};
+
+const checkIn = function (flightNum, passenger) {
+  flightNum = 'LLCOOL1233';
+  passenger.name = 'Mr.' + passenger.name;
+
+  if (passenger.passport === 1235465465) {
+    alert('Checked in');
+  } else {
+    alert('Wrong passport!');
+  }
+};
+
+checkIn(flight, jonas);
+console.log(flight); //broj leta se nije promenio, posto je 'flightNum' druga varijabla
+console.log(jonas); //
+
+const newPassport = function (person) {
+  person.passport = Math.trunc(Math.random() * 1000000000);
+};
+
+newPassport(jonas);
+checkIn(flight, jonas);*/
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+//Higher-order function
+//higher order function je funkcija koja poziva druge funkcije,
+//a one koje su pozvane se nazivaju callback funkcije
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+  console.log(`Transformed by: ${fn.name}`); // funkcije imaju metode i propertyje,
+};
+
+transformer('JavaScript is the best!', upperFirstWord);
+//kada se koristi callback funkcija, pisemo samo naziv, bez zagrada, jer je ne pozivamo
+//vec je koristimo kao value, a HIGHER ORDER funkcija ce je pozvati
+transformer('JavaScript is the best!', oneWord);
+
+// primer higher-order i callback funkcije
+document.body.addEventListener('click', fn);
