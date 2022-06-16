@@ -2046,6 +2046,8 @@ const greetArr = greeting => name => console.log(`${greeting}`, `${name}`);
 greetArr('Hi')('Upoje');*/
 
 // The call method
+
+/*
 const lufthansa = {
   airline: 'Lufthansa',
   iataCode: 'LH',
@@ -2113,7 +2115,30 @@ document
   .querySelector('.buy')
   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa)); //posto ovde ne pozivamo funciju CALL nam ne treba,
 //vec nam treba BIND, i tu pozivamo LUFTHANSA objekat
-
+*/
 // PARTIAL APLICATION
 
 //ovde je bitno to sto predefinisemo parametre
+
+const addTax = (rate, value) => value + value * rate;
+
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23); // prvi argument u BIND je uvek THIS, ali ovde ga nema, pa je onda NULL
+// drugi argument bi bio onda 'rate', a eventualno treci bi bio 'value'
+// addVAT = value => value + value * 0.23 - NA DRUGI NACIN NAPISANO
+console.log(addVAT(100));
+
+// isti primer, ali napisano preko funkcije u funkciji
+
+const addTax1 = function (rate) {
+  return function (value) {
+    console.log(value + value * rate);
+  };
+};
+addTax1(0.21)(100);
+
+const addVAT1 = addTax1.call(null, 0.16);
+// ovde pozivam CALL umesto BIND, jer ustvari pozivamo funkciju u funkciji
+
+console.log(addVAT1(100));
