@@ -2001,7 +2001,7 @@ const newPassport = function (person) {
 
 newPassport(jonas);
 checkIn(flight, jonas);*/
-
+/*
 const oneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
 };
@@ -2025,3 +2025,75 @@ transformer('JavaScript is the best!', oneWord);
 
 // primer higher-order i callback funkcije
 document.body.addEventListener('click', fn);
+*/
+
+//functions returning functions
+/*
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting}`, `${name}`);
+  };
+};
+
+const greeterHey = greet('Hey');
+
+greeterHey('Jonas');
+greet('Hello')('Stevo');
+
+// pisanje pomocu arrow functions
+const greetArr = greeting => name => console.log(`${greeting}`, `${name}`);
+
+greetArr('Hi')('Upoje');*/
+
+// The call method
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function {}  - stari nacin pisanja funkcije u objektu
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+lufthansa.book(239, 'Jonas Schmeddtman');
+console.log(lufthansa.bookings);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book; // FIRST CLAAS function - ovo je sada METOD
+//book(23, 'Sarah Wiliams'); - OVO NE MOZE jer je ovo REGULAR FUNCTION CALL
+
+// CALL metod
+book.call(eurowings, 23, 'Sara Wiliams');
+console.log(eurowings);
+
+book.call(lufthansa, 345, 'Upoje Glisko');
+console.log(lufthansa);
+
+//APPLY metod
+
+const bookedData = [34, 'Ludi Milojko'];
+
+book.apply(eurowings, bookedData);
+console.log(eurowings);
+
+book.call(lufthansa, ...bookedData);
+console.log(lufthansa);
+
+//BIND metod
+
+const bookEW = book.bind(eurowings); // kreiranje nove funkcije i vezivanje THIS za eurowings
+const bookLH = book.bind(lufthansa);
+
+bookEW(435, 'Glisko Upojevic');
+
+const bookEW435 = book.bind(eurowings, 435); // vezivanje THIS za eurowings I ZA JEDAN PARAMETAR
+bookEW435('Gile Upojko'); //sada je funkciji potrebno samo ime putnika
+bookEW435('Jonas Upojevic');
