@@ -2097,3 +2097,23 @@ bookEW(435, 'Glisko Upojevic');
 const bookEW435 = book.bind(eurowings, 435); // vezivanje THIS za eurowings I ZA JEDAN PARAMETAR
 bookEW435('Gile Upojko'); //sada je funkciji potrebno samo ime putnika
 bookEW435('Jonas Upojevic');
+
+// BIND with event listener
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this); // ovde je THIS ustvari HTML elemenat, tj dugme
+  this.planes++;
+  console.log(this.planes); //ovde funkcija ne radi, dobijamo NaN, jer je THIS dugme u HTML
+};
+
+// lufthansa.buyPlane(); //ovde cemo dobiti 301 - funkcija radi
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa)); //posto ovde ne pozivamo funciju CALL nam ne treba,
+//vec nam treba BIND, i tu pozivamo LUFTHANSA objekat
+
+// PARTIAL APLICATION
+
+//ovde je bitno to sto predefinisemo parametre
