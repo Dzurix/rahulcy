@@ -2144,6 +2144,7 @@ const addVAT1 = addTax1.call(null, 0.16);
 
 console.log(addVAT1(100));
 */
+/*
 //CHALENGE 13
 
 const poll = {
@@ -2189,3 +2190,34 @@ document
 // [1, 5, 3, 9, 6, 1];
 
 poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+
+
+// Immediately invoked Function Expressions (IIFE)
+
+(function () {
+  console.log('This will never run again');
+})();
+// kada celu funkciju stavimo u zagradu na neki nacin varamo jS da misli da je to expresion i pozovemo je sa ( ) i to se naziva IIFE
+
+(() => console.log('This will ALSO never run again'))();
+// drugi nacin da napisemo IIFE preko strelica =>
+*/
+
+//CLOSURES
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
