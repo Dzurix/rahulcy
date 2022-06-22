@@ -2116,6 +2116,7 @@ document
   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa)); //posto ovde ne pozivamo funciju CALL nam ne treba,
 //vec nam treba BIND, i tu pozivamo LUFTHANSA objekat
 */
+/*
 // PARTIAL APLICATION
 
 //ovde je bitno to sto predefinisemo parametre
@@ -2142,3 +2143,49 @@ const addVAT1 = addTax1.call(null, 0.16);
 // ovde pozivam CALL umesto BIND, jer ustvari pozivamo funkciju u funkciji
 
 console.log(addVAT1(100));
+*/
+//CHALENGE 13
+
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+
+  answers: new Array(4).fill(0), //This generates [0,0,0,0]. More in the next section
+  registerNewAnswer() {
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join(`\n`)}\n(Write option number)`
+      )
+    );
+    console.log(answer);
+
+    // register answer
+
+    typeof answer === 'number' &&
+      answer < this.answers.length &&
+      this.answers &&
+      this.answers[answer]++;
+
+    this.displayResults();
+    this.displayResults('string');
+  },
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      console.log(`Pool results are ${this.answers.join(', ')}`);
+    }
+  },
+};
+
+//poll.registerNewAnswer();
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+// BONUS
+
+// [5, 2, 3]
+// [1, 5, 3, 9, 6, 1];
+
+poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
