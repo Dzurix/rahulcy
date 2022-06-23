@@ -2204,7 +2204,7 @@ poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
 */
 
 //CLOSURES
-
+/*
 const secureBooking = function () {
   let passengerCount = 0;
 
@@ -2220,4 +2220,31 @@ booker();
 booker();
 booker();
 
-console.dir(booker);
+console.dir(booker); // kada hocemo da istrazimo environment varijable
+
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds.`);
+};
+
+const perGroup = 1000; //Dokaz da CLOSURE ima prednost u odnosu na SCOPE CHAIN
+boardPassengers(180, 3);
+*/
+//CHALENGE 14
+// kada kliknemo na body, da se slova promene u plavu boju
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
