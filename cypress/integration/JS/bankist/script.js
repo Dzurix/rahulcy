@@ -126,26 +126,35 @@ console.log('Jonas'.at(0));
 console.log('Jonas'.at(-1));
 */
 
-//forEach method
+//forOf loop
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-for (const movement of movements) {
+//for (const movement of movements) {
+for (const [i, movement] of movements.entries()) {
+  // pristupanje trenutnom indeksu 'i'
+  // red parametara je VEOMA VAZAN i on je sledeci: index tretnutnog elementa, trenutni element
+
   if (movement > 0) {
-    console.log(`You deposited ${movement}`);
+    console.log(`Movement ${i + 1}: You deposited ${movement}`);
   } else {
-    console.log(`You withdrew ${Math.abs(movement)}`);
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
   }
 }
 
-// u ovom slucaju forEach je HIGHER ORDER function i njemu CALLBACK funkcija kaze sta da radi
-movements.forEach(function (movement) {
+// u ovom slucaju forEach metod je HIGHER ORDER function i njemu CALLBACK funkcija kaze sta da radi
+movements.forEach(function (movement, index, array) {
+  // pristupanje indeksu preko forEach metoda
+  // red parametara je VEOMA VAZAN i on je sledeci: trenutni element, index tretnutnog elementa, treci je ceo ARRAY koji loopujemo
   if (movement > 0) {
-    console.log(`You deposited ${movement}`);
+    console.log(` Movement ${index + 1}: You deposited ${movement}`);
   } else {
-    console.log(`You withdrew ${Math.abs(movement)}`);
+    console.log(` Movement ${index + 1}: You withdrew ${Math.abs(movement)}`);
   }
 });
 
 // 0: function (200)
 // 1: funnction (450)
 // 2: function (400)
+
+//CONTINUE i BREAK statements NE RADE u forEach metodu
+// zato ako mi trebaju ne mogu koristiti forEach
