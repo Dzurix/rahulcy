@@ -65,11 +65,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+//const currencies = new Map([
+// ['USD', 'United States dollar'],
+// ['EUR', 'Euro'],
+// ['GBP', 'Pound sterling'],
+//]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -124,7 +124,7 @@ console.log(arr.at(-1)); // razlog zasto je mnogo jednostavnije koristiti AT MET
 
 console.log('Jonas'.at(0));
 console.log('Jonas'.at(-1));
-*/
+
 
 //forOf loop
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -158,3 +158,27 @@ movements.forEach(function (movement, index, array) {
 
 //CONTINUE i BREAK statements NE RADE u forEach metodu
 // zato ako mi trebaju ne mogu koristiti forEach
+*/
+
+//forEach on MAP
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+  // red argumenata je VEOMA VAZAN i on je sledeci: trenutna vrednost, key tretnutnog elementa, treci je ceo MAP koji loopujemo
+
+  console.log(`${key}: ${value}`);
+});
+
+//forEach on SET
+
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+
+console.log(currenciesUnique); //dobijamo svaku vrednost samo jednom
+//kod SET nemamo INDEX i nemamo KEYS
+currenciesUnique.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
