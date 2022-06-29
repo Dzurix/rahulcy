@@ -2236,7 +2236,7 @@ const boardPassengers = function (n, wait) {
 
 const perGroup = 1000; //Dokaz da CLOSURE ima prednost u odnosu na SCOPE CHAIN
 boardPassengers(180, 3);
-*/
+
 //CHALENGE 14
 // kada kliknemo na body, da se slova promene u plavu boju
 
@@ -2248,3 +2248,18 @@ boardPassengers(180, 3);
     header.style.color = 'blue';
   });
 })();
+*/
+
+//CHALENGE 15
+
+const dogsJulia = [3, 5, 2, 12, 7];
+const dogsKate = [4, 1, 15, 8, 3];
+
+const onlyDogsJulia = [...dogsJulia].slice(1, 2);
+
+console.log(onlyDogsJulia);
+// Copy array
+
+const mainMenuCopy = [...restaurant.mainMenu]; //kopiranje 'shalow'
+// Spajanje dva niza
+const menu1 = [...restaurant.starterMenu, ...restaurant.mainMenu];
