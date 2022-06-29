@@ -75,6 +75,22 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+
+const user = 'Steven Thomas Williams'; //stw
+
+const createUserNames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name1 => name1[0])
+      .join('');
+  });
+};
+createUserNames(accounts);
+
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -174,7 +190,7 @@ movements.forEach(function (movement, index, array) {
 // zato ako mi trebaju ne mogu koristiti forEach
 */
 
-//forEach on MAP
+//forEach on MAPS
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -187,7 +203,7 @@ currencies.forEach(function (value, key, map) {
   console.log(`${key}: ${value}`);
 });
 
-//forEach on SET
+//forEach on SETS
 
 const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
 
