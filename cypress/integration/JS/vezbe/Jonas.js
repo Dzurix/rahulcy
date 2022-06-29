@@ -2255,11 +2255,16 @@ boardPassengers(180, 3);
 const dogsJulia = [3, 5, 2, 12, 7];
 const dogsKate = [4, 1, 15, 8, 3];
 
-const onlyDogsJulia = [...dogsJulia].slice(1, 2);
+const onlyDogsJulia = [...dogsJulia].slice(1, 3);
 
 console.log(onlyDogsJulia);
-// Copy array
 
-const mainMenuCopy = [...restaurant.mainMenu]; //kopiranje 'shalow'
-// Spajanje dva niza
-const menu1 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+const allDogs = [...onlyDogsJulia, ...dogsKate];
+
+console.log(allDogs);
+
+allDogs.forEach(function (age, i) {
+  age <= 3
+    ? console.log(`Dog number ${i + 1} is still a puppy`)
+    : console.log(`Dog number ${i + 1} is an adult, and is ${age} years old`);
+});
