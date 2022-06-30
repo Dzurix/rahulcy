@@ -2300,7 +2300,7 @@ const movementsDescriptions = movements.map(
 );
 
 console.log(movementsDescriptions);
-*/
+
 
 //FILTER metod
 
@@ -2335,3 +2335,43 @@ const balaance = movements.reduce(function (accumulator, value, i, arr) {
 }, 0);
 
 console.log(balaance);
+
+//isto to pomocu forOF loop
+
+let balance2 = 0;
+
+for (const mov of movements) {
+  balance2 += mov;
+}
+console.log(balance2);
+// REDUCE pomocu arrow functions
+
+const balance = movements.reduce((acc, i) => acc + i, 0);
+console.log(balance);
+
+//maximum vrednost pomocu REDUCE
+
+const max = movements.reduce((acc, value) => {
+  if (acc > value) {
+    return acc;
+  } else {
+    return value;
+  }
+}, movements[0]);
+
+console.log(max);
+*/
+
+//CHALENGE 16
+
+[5, 2, 4, 1, 15, 8, 3];
+
+const calcAverageHumanAge = function (arr) {
+  arr.map(function (age) {
+    if (age <= 2) {
+      return age * 2;
+    } else {
+      return 16 + age * 4;
+    }
+  });
+};

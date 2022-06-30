@@ -103,6 +103,14 @@ console.log(accounts);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce(function (acc, i) {
+    return acc + i;
+  }, 0);
+  labelBalance.textContent = `${balance} €`; //OVAKO POVEZUJEMO SELEKTOVANI ELEMENT I REZULTAT
+};
+
+calcDisplayBalance(account1.movements);
 /////////////////////////////////////////////////
 /*
 let arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
