@@ -2364,14 +2364,33 @@ console.log(max);
 
 //CHALENGE 16
 
-[5, 2, 4, 1, 15, 8, 3];
+let a = [5, 2, 4, 1, 15, 8, 3];
 
-const calcAverageHumanAge = function (arr) {
-  arr.map(function (age) {
+a.length;
+
+const calcAverageHumanAge = function (ages) {
+  const humanAge = ages.map(function (age) {
     if (age <= 2) {
       return age * 2;
     } else {
       return 16 + age * 4;
     }
   });
+  console.log(humanAge);
+  const adults = humanAge.filter(age => age >= 18);
+
+  console.log(adults);
+
+  // const averageDogYear =
+  //   adults.reduce((acc, age, i, arr1) => acc + age, 0) / adults.length;
+
+  // drugi nacin uz koriscenje
+  const averageDogYear = adults.reduce(
+    (acc, age, i, arr1) => acc + age / arr1.length,
+    0
+  );
+
+  console.log(averageDogYear);
 };
+
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
