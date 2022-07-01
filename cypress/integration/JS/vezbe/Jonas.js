@@ -2360,7 +2360,7 @@ const max = movements.reduce((acc, value) => {
 }, movements[0]);
 
 console.log(max);
-*/
+
 
 //CHALENGE 16
 
@@ -2394,3 +2394,33 @@ const calcAverageHumanAge = function (ages) {
 };
 
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+*/
+const eurToUsd = 1.1;
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  //ako treba da DEBUGujem nesto u ovom lancu, onda ovako
+  //.map(mov,i,arr)=>{
+  //console.log(arr); // ovde vadim ARRAY da vidim koji su rezultati, pa da skontam
+  //return mov *eurToUsd  }
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalDepositsUSD);
+
+//CHALENGE 17
+
+const dogAge = [5, 2, 4, 1, 15, 8, 3];
+
+const calcAverageHumanAge = function (ages) {
+  const humanage = ages
+    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+  console.log(humanage);
+};
+
+calcAverageHumanAge(dogAge);
