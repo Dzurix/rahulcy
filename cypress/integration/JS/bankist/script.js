@@ -224,7 +224,7 @@ movements.forEach(function (movement, index, array) {
 
 //CONTINUE i BREAK statements NE RADE u forEach metodu
 // zato ako mi trebaju ne mogu koristiti forEach
-*/
+
 
 //forEach on MAPS
 const currencies = new Map([
@@ -248,3 +248,18 @@ console.log(currenciesUnique); //dobijamo svaku vrednost samo jednom
 currenciesUnique.forEach(function (value, key, map) {
   console.log(`${key}: ${value}`);
 });
+*/
+
+//FIND
+
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis'); // nacin pretrage po objektu
+
+console.log(account);
+
+for (const a of accounts) {
+  if (a.owner === 'Jessica Davis') {
+    console.log(a);
+  }
+}

@@ -2394,7 +2394,7 @@ const calcAverageHumanAge = function (ages) {
 };
 
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-*/
+
 const eurToUsd = 1.1;
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -2424,3 +2424,13 @@ const calcAverageHumanAge = function (ages) {
 };
 
 calcAverageHumanAge(dogAge);
+*/
+
+//FIND METOD
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+
+console.log(accounts);
