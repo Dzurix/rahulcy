@@ -74,26 +74,25 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const displaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
 
   labelSumIn.textContent = `${incomes} €`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
 
   labelSumOut.textContent = `${Math.abs(out)} €`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       console.log(arr);
       return int >= 1; //samo kamata veca od 1 se isplacuje od strane banke
@@ -103,16 +102,13 @@ const displaySummary = function (movements) {
   labelSumInterest.textContent = `${interest} €`;
 };
 
-displaySummary(account1.movements);
-
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce(function (acc, i) {
+const calcDisplayBalance = function (account) {
+  account.balance = account.movements.reduce(function (acc, i) {
     return acc + i;
   }, 0);
-  labelBalance.textContent = `${balance} €`; //OVAKO POVEZUJEMO SELEKTOVANI ELEMENT I REZULTAT
+  account.balance;
+  labelBalance.textContent = `${account.balance} €`; //OVAKO POVEZUJEMO SELEKTOVANI ELEMENT I REZULTAT
 };
-
-calcDisplayBalance(account1.movements);
 
 const user = 'Steven Thomas Williams'; //stw
 
@@ -127,8 +123,74 @@ const createUserNames = function (accs) {
 };
 createUserNames(accounts);
 
+const updateUI = function (acc) {
+  //Display movements
+  displayMovements(acc.movements);
+  //Display balances
+  calcDisplayBalance(acc);
+  //Display summary
+  calcDisplaySummary(acc);
+};
 console.log(accounts);
 
+//Event handler
+
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault(); //prevent form from submiting
+  console.log('LOGIN');
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  console.log(currentAccount);
+  // ovaj upitnik je OPTIONAL CHAINING
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    console.log('LOGIN');
+
+    //Display UI and message
+
+    labelWelcome.textContent = `Welcome back ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    //UI
+    containerApp.style.opacity = 100;
+
+    //Clear input fields
+
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    //updating UI
+    updateUI(currentAccount);
+  }
+});
+
+//Transfering money
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAccount = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  console.log(amount, receiverAccount);
+  if (
+    amount > 0 &&
+    receiverAccount &&
+    currentAccount.balance >= amount &&
+    receiverAccount?.username !== currentAccount.username
+  ) {
+    //Transfer
+    currentAccount.movements.push(-amount);
+    receiverAccount.movements.push(amount);
+
+    //updating UI
+    updateUI(currentAccount);
+  }
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
