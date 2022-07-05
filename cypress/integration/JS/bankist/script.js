@@ -133,7 +133,7 @@ const updateUI = function (acc) {
 };
 console.log(accounts);
 
-//Event handler
+//Event handlers
 
 let currentAccount;
 
@@ -168,6 +168,41 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    //Add movement
+    currentAccount.movements.push(amount);
+
+    //update UI
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = '';
+});
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    console.log(index);
+    //Delete account
+    accounts.splice(index, 1);
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
 //Transfering money
 
 btnTransfer.addEventListener('click', function (e) {
@@ -176,7 +211,7 @@ btnTransfer.addEventListener('click', function (e) {
   const receiverAccount = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
-  console.log(amount, receiverAccount);
+  inputTransferAmount.value = inputTransferTo.value = '';
   if (
     amount > 0 &&
     receiverAccount &&
@@ -325,3 +360,39 @@ for (const a of accounts) {
     console.log(a);
   }
 }
+
+//Some Metod
+
+console.log(movements);
+// INCLUDES proverava samo da li postoji isti element
+console.log(movements.includes(-130));
+// SOME metod proverava da li postoji BILO KOJA vrednost koja zadovoljava uslov
+
+console.log(movements.some(mov => mov === -130)); // isto napisano ali preko SOME metoda
+const anyDeposits = movements.some(mov => mov > 500);
+console.log(anyDeposits);
+
+//Every metod
+
+// Slican kao i SOME, ali samo vraca TRUE ukoliko je svaki element prosao uslov
+console.log(account4.movements.every(mov => mov > 0));
+
+// separated CALLBACK
+
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+
+//FLAT
+
+const arr = [
+  [1, 2, 3],
+  [4, 5, 6, 7, 8],
+];
+
+console.log(arr.flat()); // spajanje dva ARRAY,
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+
+console.log(arrDeep.flat(2)); // u argumentu definisemo koliko LEVELA hocemo duboko da spajamo ARRAY
