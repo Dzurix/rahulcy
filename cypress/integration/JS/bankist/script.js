@@ -396,3 +396,65 @@ console.log(arr.flat()); // spajanje dva ARRAY,
 const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
 
 console.log(arrDeep.flat(2)); // u argumentu definisemo koliko LEVELA hocemo duboko da spajamo ARRAY
+
+//  I nacin
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
+// const overalBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overalBalance);
+
+//  II  nacin
+const overalBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overalBalance);
+
+// postoji i flatMap() metod koji je bolji zbog performansi
+//ali ide samo jedan LEVEL duboko u ARRAY, tako da ako ima vise levela onda ga ne mozemo koristiti
+
+const overalBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overalBalance2);
+
+// SORTING
+
+//strings
+const owners = ['Jonas', 'Zack', 'Adam', 'Martha'];
+console.log(owners.sort()); // metod 'sort' MENJA ARRAY
+
+//
+
+console.log(movements);
+//console.log(movements.sort());
+//Sort prvo konvertuje sve u STRING pa onda radi sortiranje
+//zato se to ovako ispravlja
+
+//return <0 , a, b
+//return >0,  b, a
+
+//Ascending
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+// });
+
+//ovo mozemo i ovako napisati
+
+movements.sort((a, b) => a - b);
+
+console.log(movements);
+
+//Descending
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (b > a) return 1;
+});
+
+//movements.sort((a, b) => b - a);
+console.log(movements);
+
+// ako imamo string gde su izmesani brojevi i stringovi onda NE KORISTITI OVAJ METOD
