@@ -61,15 +61,18 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
+  //ovde smo dedelili false zato sto necemo da se sortira, osim kad kliknemo na button
   containerMovements.innerHTML = '';
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements; //ovde sa SLICE metodom ustvari kopiramo ARRAY da ne izmenimo originalni, a ne mozemo koristiti SPREAD, jer je u pitanju CHAINING
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
     <div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-    <div class="movements__value">${mov} €</div></div>`;
+    <div class="movements__value">${mov}€</div></div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
@@ -82,13 +85,13 @@ const calcDisplaySummary = function (acc) {
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
 
-  labelSumIn.textContent = `${incomes} €`;
+  labelSumIn.textContent = `${incomes}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
 
-  labelSumOut.textContent = `${Math.abs(out)} €`;
+  labelSumOut.textContent = `${Math.abs(out)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -99,7 +102,7 @@ const calcDisplaySummary = function (acc) {
     })
     .reduce((acc, int) => acc + int, 0);
 
-  labelSumInterest.textContent = `${interest} €`;
+  labelSumInterest.textContent = `${interest}€`;
 };
 
 const calcDisplayBalance = function (account) {
@@ -107,7 +110,7 @@ const calcDisplayBalance = function (account) {
     return acc + i;
   }, 0);
   account.balance;
-  labelBalance.textContent = `${account.balance} €`; //OVAKO POVEZUJEMO SELEKTOVANI ELEMENT I REZULTAT
+  labelBalance.textContent = `${account.balance}€`; //OVAKO POVEZUJEMO SELEKTOVANI ELEMENT I REZULTAT
 };
 
 const user = 'Steven Thomas Williams'; //stw
@@ -226,6 +229,19 @@ btnTransfer.addEventListener('click', function (e) {
     updateUI(currentAccount);
   }
 });
+
+//SORT BUTTON
+
+//state variable - svaki put kada drugi put kliknemo
+
+let sorted = false;
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted; // ovo je za menjanje iz TRUE u FALSE
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -458,3 +474,103 @@ movements.sort((a, b) => {
 console.log(movements);
 
 // ako imamo string gde su izmesani brojevi i stringovi onda NE KORISTITI OVAJ METOD
+
+//MORE WAYS OF CREATING AND FIILING ARRAYS
+
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+const x = new Array(7); // kada PASSujemo samo jedan argument, onda ovo znaci da ima 7 praznih mesta, tj to je njegova duzina
+//JEDINI metod koji mozemo pozvati sada je metod FILL()
+console.log(x);
+console.log(x.map(() => 5)); // NE MOZEMO NA X pozivati MAP metod
+
+// prazni ARRAY + fill method
+//x.fill(1); // MENJA ARRAY i dodaje 1 sedam puta
+console.log(x);
+x.fill(1, 3, 5); //kao SLICE metod radi
+console.log(x);
+
+const arr1 = [1, 2, 3, 4, 5, 6, 7];
+arr1.fill(23, 2, 6);
+console.log(arr1);
+
+//Array.from
+// sluzi za pretvaranje ITERABLES (strings, maps, sets) u ARRAYS
+// takodje i sluzi za pretvaranje 'querySelectorAll' iz 'nodelist' u ARRAYS
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (cur, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'), //ovo je 'nodelist' u sirovom stanju
+    el => Number(el.textContent.replace('€', '')) //maping koji transformise inicijalni ARRAY u ARRAY koji hocemo
+  );
+
+  // OVO JE DRUGI NACIN koji mozemo koristiti preko metoda map()
+  //console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
+
+  console.log(movementsUI);
+});
+
+// ARRAY METHODS PRACTICE
+
+//1.
+
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0);
+console.log(bankDepositSum);
+
+//2. da izbrojimo koliko ima depozita sa najmanje 1000 eura
+
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  //  .filter(mov => mov >= 1000).length; //OVO je preko filter metoda
+  .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0); // OVO je nacin kako da nesto brojim preko REDUCE
+
+console.log(numDeposits1000);
+
+//Prefixed ++ operator
+let a = 10;
+console.log(a++); //vraca 10
+console.log(++a); //vraca 11
+console.log(a); //vraca 11
+
+// 3. Kreirati novi objekat pomocu REDUCE()koji sadrzi sumu deposits i withdrawals u isto vreme odjednom
+
+const sums = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // posto ovde imamo {} function body, moramo rucno da pisemo RETURN
+
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur); // ovo moze na sledeci nacin
+
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(sums);
+
+//4 funkcija za pretvaranje STRINGA u TITLE CASE (This Is a Nice Title Case)
+
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(' ');
+  return capitalize(titleCase);
+};
+
+console.log(convertTitleCase('this is a LONG title but not too loog'));
+console.log(convertTitleCase('and here is another title with an EXAMPLE'));
