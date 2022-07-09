@@ -2434,7 +2434,7 @@ const firstWithdrawal = movements.find(mov => mov < 0);
 console.log(firstWithdrawal);
 
 console.log(accounts);
-*/
+
 //CHALENGE 18
 
 const dogs = [
@@ -2519,3 +2519,70 @@ const shallowCopyForArray = [...dogs]; // SHALLOW COPY ZA ARRAY JE SRPEAD OPERAT
 shallowCopyForArray.sort((a, b) => a.recFood - b.recFood);
 
 console.log(shallowCopyForArray);
+
+*/
+
+//NUMBERS
+
+// BASE 10 - to su brojevi od 0-9
+// Bynary 2   - to je 0 i 1
+
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 === 0.3); //ovde dobijamo FALSE a ne bi trebalo, JS nije bas dobra za preciznu matematiku
+
+console.log(Number('23')); //pretvaranje stringa u broj
+console.log(+'23'); //pretvaranje broja preko TYPE COERCION
+
+//Parsing
+
+console.log(Number.parseInt('30px', 10));
+//Kada god mi treba da procitam vrednost broja iz stringa, koristim parseFloat()
+console.log(Number.parseFloat('2.5rem'));
+
+//Kada mi treba da  proverim da li je nesto ceo broj koristim isInteger()
+console.log(Number.isInteger(2.5));
+
+//NaN koristiti kada hocu da vidim da li neka vrednost NIJE BROJ
+console.log(Number.isNaN(20));
+console.log(Number.isNaN('20'));
+console.log(Number.isNaN(+'20x'));
+console.log(Number.isNaN(23 / 0));
+
+// isFinite je najbolji nacin da proverimo da li je nesto NUMBER
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite(+'20x'));
+console.log(Number.isFinite(23 / 0));
+
+//funkcija za odredjivanje RANDOM broja u zadatom rangu
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
+
+console.log(randomInt(10, 15));
+
+// Zaokruzivinje
+
+console.log(Math.trunc(23.7)); // dobijamo 23
+
+console.log(Math.round(23.7)); // dobijamo 24
+
+//zaokruzivanje na gornju vrednost
+
+console.log(Math.ceil(23.3)); // dobijamo 24
+
+//zaokruzivanje na donju vrednost
+console.log(Math.floor(23.7)); // dobijamo 23
+
+//razlog zasto floor i trunc nisu istu je kako se ponasaju kod NEGATIVNIH BROJEVA
+
+console.log(Math.trunc(-23.3)); //dobijamo 23
+console.log(Math.floor(-23.3)); // dobijamo 24
+
+//Rounding decimals
+
+console.log((2.7).toFixed(0)); // dobijamo 3 ali toFixed vraca STRING
+console.log((2.7).toFixed(3)); // dobijamo 2.700
+//da pretvorimo u string koristimo +
+
+console.log(+(2.345).toFixed(2)); // dobijamo BROJ 2.35
