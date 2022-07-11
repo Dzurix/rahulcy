@@ -2520,7 +2520,7 @@ shallowCopyForArray.sort((a, b) => a.recFood - b.recFood);
 
 console.log(shallowCopyForArray);
 
-*/
+
 
 //NUMBERS
 
@@ -2586,3 +2586,117 @@ console.log((2.7).toFixed(3)); // dobijamo 2.700
 //da pretvorimo u string koristimo +
 
 console.log(+(2.345).toFixed(2)); // dobijamo BROJ 2.35
+*/
+
+//REMAINDER OPERATOR - ostatak - %
+
+console.log(5 % 2); //dobijemo 1 jer uzimamo samo ceo broj, a onda je ostatak 1 (2*2+1)
+console.log(8 % 3); //dobijamo ostatak 2
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(4)); // dobijamo true
+
+// Decimale - numeric separators
+
+//kako da broj 287460000000 lakse procitamo
+const diameter = 287_460_000_000; // koristimo 'underscore' da lakse citamo broj
+console.log(diameter);
+
+console.log(Number('230_000')); // Ovo NE MOZE, vec samo kada pisemo brojeve
+console.log(parseInt('230_000')); // Isto NE MOZE, dobijemo samo 230
+
+//BIG INT
+//BigInt - uvedeni od ES2020
+//64 bita znaci da ima 64 '0' i '1' u predstavljanju nekog broja
+//od tih 64 bita, samo 53 se koriste da uskladiste sam broj, ostalo je da se uskladisti pozicija decimalnih mesta i znaka
+
+console.log(2 ** 53 - 1); // najveci broj koji JS moze da predstavi bezbedno
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 0); // ovo NIJE TACNO, jednostavno JS posle ovoga ne moze da predstavlja brojeve
+
+console.log(5465465460141541445164651466546544614665141n); // kada dodamo 'n' na kraju broja, to je BigInt i onda se prestavi ceo broj
+console.log(BigInt(5465465460141541445164651466546544614665141)); // nije bas isti kao prvi, kada idemo preko funkcije ipak treba koristiti manje brojeve
+
+//Operations sa BigInt - isto kao i pre
+
+console.log(10000n + 10000n);
+console.log(5465465460141541445164651466546544614665141n + 2n);
+// console.log(Math.sqrt(16n));  // NE MOZE
+
+//console.log(10000n + 1); // NE MOZEmo da miksujemo BigInt i obicne brojeve, dobijemo gresku
+
+//Exceptions - 1. logican operations
+console.log(20n > 15); // true
+console.log(20n === 20); // false
+console.log(20n == '20'); // true  - type coercion
+
+//Exceptions - 2. string concationations
+const huge = 215143540305045213545430878934204584n;
+console.log(huge + ' is REALLY big!!!');
+
+//Divisions
+
+console.log(10n / 3n); //vraca samo ceo broj (bez decimalnog dela)
+
+//CREATING DATES
+
+//create a date - 4 nacina
+
+// 1 nacin
+const now = new Date();
+console.log(now);
+
+//2 nacin - parse date
+
+console.log(new Date('Mon Jul 11 2022 13:00:07')); // mi odredjujemo vreme
+console.log(new Date('December 24, 2015'));
+
+// Meseci u JS su zero based
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // dobijemo 19 NOVembar 2037
+console.log(new Date(2037, 10, 33)); // Dobijemo decembar 3, posto novembar ima 30 dana
+
+console.log(new Date(0)); // vreme od kad je poceo datum na kompovima
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // 3 dania u milisekundama
+
+// Datumi su Objekti sto znaci da imaju svoje metode
+// working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear()); // uvek koristi ovaj metod umesto getYear
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+
+const now1 = new Date();
+const day = `${now1.getDate()}`.padStart(2, '0'); //dodavanje 0 ispred
+const month = `${now1.getMonth() + 1}`.padStart(2, '0'); //zato sto je zero-based
+
+// 'Timestamp' je vreme koje je proslo u milisekundama od 01.01.1970.
+console.log(future.getTime());
+console.log(new Date(2142253380000));
+
+console.log(Date.now()); //dobijanje 'TIMESTAMP' do sada koliko je proslo
+// postoji i setovanje datuma
+
+future.setFullYear(2040);
+console.log(future);
+
+//operations with Dates
+
+//const future = new Date(2037, 10, 19, 15, 23);
+
+// mozemo oduzimati datume, da vidimo koliko je proslo vreme izmedju dva datuma
+
+console.log(Number(future));
+console.log(+future); // daje isti rezultat
+
+const calcDaysPassed = (date1, date2) =>
+  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24); // kako da dobijemo vreme u danima
+
+const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
+
+console.log(days1);

@@ -73,17 +73,27 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements, sort = false) {
+const displayMovements = function (acc, sort = false) {
   //ovde smo dedelili false zato sto necemo da se sortira, osim kad kliknemo na button
   containerMovements.innerHTML = '';
 
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements; //ovde sa SLICE metodom ustvari kopiramo ARRAY da ne izmenimo originalni, a ne mozemo koristiti SPREAD, jer je u pitanju CHAINING
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements; //ovde sa SLICE metodom ustvari kopiramo ARRAY da ne izmenimo originalni, a ne mozemo koristiti SPREAD, jer je u pitanju CHAINING
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const date = new Date(acc.movementsDates[i]); //
+    const day = `${date.getDate()}`.padStart(2, '0'); //dodavanje 0 ispred
+    const month = `${date.getMonth() + 1}`.padStart(2, '0'); //zato sto je zero-based
+    const year = date.getFullYear();
+    const displayDate = `${day}/${month}/${year}`;
+
     const html = `
     <div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+    <div class="movements__date">${displayDate}</div>
     <div class="movements__value">${mov.toFixed(2)}€</div></div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -140,7 +150,7 @@ createUserNames(accounts);
 
 const updateUI = function (acc) {
   //Display movements
-  displayMovements(acc.movements);
+  displayMovements(acc);
   //Display balances
   calcDisplayBalance(acc);
   //Display summary
@@ -151,6 +161,14 @@ console.log(accounts);
 //Event handlers
 
 let currentAccount;
+
+//======================================
+// FAKING ALWAYS WE ARE LOGGED IN
+
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+//======================================
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault(); //prevent form from submiting
@@ -173,6 +191,16 @@ btnLogin.addEventListener('click', function (e) {
     //UI
     containerApp.style.opacity = 100;
 
+    //Create current date and time
+    const now = new Date();
+    const day = `${now.getDate()}`.padStart(2, '0'); //dodavanje 0 ispred
+    const month = `${now.getMonth() + 1}`.padStart(2, '0'); //zato sto je zero-based
+    const year = now.getFullYear();
+    const hour = `${now.getHours()}`.padStart(2, '0');
+    const min = `${now.getMinutes()}`.padStart(2, '0');
+
+    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min} `;
+    // day/month/year
     //Clear input fields
 
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -191,6 +219,9 @@ btnLoan.addEventListener('click', function (e) {
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     //Add movement
     currentAccount.movements.push(amount);
+
+    //Add loan date
+    currentAccount.movementsDates.push(new Date().toISOString());
 
     //update UI
     updateUI(currentAccount);
@@ -237,6 +268,9 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movements.push(-amount);
     receiverAccount.movements.push(amount);
 
+    //Add transfer date
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAccount.movementsDates.push(new Date().toISOString());
     //updating UI
     updateUI(currentAccount);
   }
@@ -250,7 +284,7 @@ let sorted = false;
 
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted; // ovo je za menjanje iz TRUE u FALSE
 });
 
