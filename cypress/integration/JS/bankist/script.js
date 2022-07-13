@@ -209,16 +209,17 @@ const startLogOutTimer = function () {
   };
 
   // Set time to 5 minutes
-  let time = 10;
+  let time = 120;
 
   //Call the timer every second
   tick();
   const timer = setInterval(tick, 1000);
+  return timer;
 };
 
 //Event handlers
 
-let currentAccount;
+let currentAccount, timer; //ubacujemo timer da bi mogli da ga prekinemo kad se logujemo na drugi account
 
 //======================================
 // FAKING ALWAYS WE ARE LOGGED IN
@@ -282,7 +283,9 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    startLogOutTimer();
+    // ovako se resetuje timer kada se ulogujemo na drugi account
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
 
     //updating UI
     updateUI(currentAccount);
@@ -353,6 +356,11 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAccount.movementsDates.push(new Date().toISOString());
     //updating UI
     updateUI(currentAccount);
+
+    //Reset timer
+
+    clearInterval(timer); //brisemo stari timer
+    timer = startLogOutTimer(); // pokrecemo novi timer
   }
 });
 
