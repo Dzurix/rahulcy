@@ -103,4 +103,64 @@ message.style.height =
 
 document.documentElement.style.setProperty('--color-primary', 'orangered'); // setovanje propertyja
 
-// Atributes
+// Atributes in HTML (src, alt, class, id, ....)
+
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.className);
+console.log(logo.src); // apsolutni URL
+console.log(logo.getAttribute('src')); // relativni URL
+
+//seting atributes
+
+logo.alt = 'Beautifull minimalist logo';
+
+// suprotno od GET je SET
+
+logo.setAttribute('company', 'Bankist');
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href); // apsolutni URL
+console.log(link.getAttribute('href')); //relativni URL
+
+//Data atributes
+console.log(logo.dataset.versionNumber);
+
+//Classes
+
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c');
+
+//Implementing smooth scrolling
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coordinate = section1.getBoundingClientRect();
+  console.log(s1coordinate);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Curent scroll (X/Y', window.scrollX, scrollY); //current scrooll position
+
+  console.log('Height/widht viewport', document.documentElement.clientHeight); //visina i sirina ono sto trenutno gledamo
+
+  //Scrolling
+
+  // window.scrollTo(
+  //   s1coordinate.left + window.scrollX,
+  //   s1coordinate.top + window.scrollY
+  // );
+  // isto to napisano preko pasovanja objekta da bi bilo 'SMOOTH'
+  // window.scrollTo({
+  //   left: s1coordinate.left + window.scrollX,
+  //   top: s1coordinate.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  //jos moderniji nacin
+  section1.scrollIntoView({ behavior: 'smooth' }); // podrzano u najnovijim browserima
+});
