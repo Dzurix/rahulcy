@@ -7,6 +7,8 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -34,12 +36,79 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+//Implementing smooth scrolling
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coordinate = section1.getBoundingClientRect();
+  console.log(s1coordinate);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Curent scroll (X/Y', window.scrollX, scrollY); //current scrooll position
+
+  console.log('Height/widht viewport', document.documentElement.clientHeight); //visina i sirina ono sto trenutno gledamo
+
+  //SMOOTH SCROOLING TO SECTION
+
+  // window.scrollTo(
+  //   s1coordinate.left + window.scrollX,
+  //   s1coordinate.top + window.scrollY
+  // );
+  // isto to napisano preko pasovanja objekta da bi bilo 'SMOOTH'
+  // window.scrollTo({
+  //   left: s1coordinate.left + window.scrollX,
+  //   top: s1coordinate.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  //jos moderniji nacin
+  section1.scrollIntoView({ behavior: 'smooth' }); // podrzano u najnovijim browserima
+});
+
+// Page navigation - smoth scroling
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+// Event delegation
+
+// Event delegation koristi cinjenicu da EVENTS BUBLES UP, a to radimo tako sto stavljamo EVENT LISTENERE na zajednickom roditelju
+// svih elemenata za koje smo zainteresovani. Tako da kada USER klikne na neki od tih linkova, EVENT se generise i BUBLES UP
+// Onda mozemo uhvatiti taj EVENT u ovom zajednickom roditelju i tu ga hendlovati, jer znamo odakle je EVENT potekao (preko event.Target)
+
+// Sa EVENT DELEGATION povecavamo efikasnost i brzinu loadovanja,
+// posto ne dodeljujemo iste EVENT HANDLERE SVIM CHILDOVIMA, VEC samo onima kojima hocemo
+
+//NAJVAZNIJA PRIMENA - kada radimo sa elementima koji jos nisu na stranici kada se stranica ucita (ON RUNTIME)
+// - primer za to su BUTTONS koji se dodavaju dinamicki dok se APP koristi
+
+// 1. add event listenere to common parent element
+// 2. Determin what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  //Mathcing strategy - da izolujemo samo ono sto nam treba
+  if (e.target.classList.contains('nav__link')) {
+    console.log('link');
+
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
 ////////////////////////////////////////////////////////////////
-//          D   O   M      //
+//          D   O   M     VEZBE     //
 ///////////////////////////////////////////////////////////////
 
 //Selecting elements
-
+/*
 console.log(document.documentElement); //selektovanje celog DOCUMENTa
 console.log(document.head); //selektovanje HEAD-a
 console.log(document.body); //selektovanje BODY
@@ -133,34 +202,65 @@ logo.classList.remove('c', 'j');
 logo.classList.toggle('c');
 logo.classList.contains('c');
 
-//Implementing smooth scrolling
+//Types of Events and Event Handlers
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
+//Event je signal (koji je generisan od strane DOM NODEa) da se nesto desilo (klik, kretanje misa, fullscreen mode, )
 
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coordinate = section1.getBoundingClientRect();
-  console.log(s1coordinate);
+//Mouse Enter event
 
-  console.log(e.target.getBoundingClientRect());
+const h1 = document.querySelector('h1');
+// h1.addEventListener('mouseenter', function (e) {
+//   alert('addEventListener: Great! You are reading the heading 👍');
+// });
 
-  console.log('Curent scroll (X/Y', window.scrollX, scrollY); //current scrooll position
+//ovo je stariji nacin
+// h1.onmouseenter = function (e) {
+//   alert('onmouseenter: Great! You are reading the heading 👍');
+// };
 
-  console.log('Height/widht viewport', document.documentElement.clientHeight); //visina i sirina ono sto trenutno gledamo
+//remove event handler
 
-  //Scrolling
+const alertH1 = function (e) {
+  alert('addEventListener: Great! You are reading the heading 👍');
+  // h1.removeEventListener('mouseenter', alertH1); // I nacin
+};
 
-  // window.scrollTo(
-  //   s1coordinate.left + window.scrollX,
-  //   s1coordinate.top + window.scrollY
-  // );
-  // isto to napisano preko pasovanja objekta da bi bilo 'SMOOTH'
-  // window.scrollTo({
-  //   left: s1coordinate.left + window.scrollX,
-  //   top: s1coordinate.top + window.scrollY,
-  //   behavior: 'smooth',
-  // });
+h1.addEventListener('mouseenter', alertH1);
+// setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000); // II nacin posle odredjenog vremena
 
-  //jos moderniji nacin
-  section1.scrollIntoView({ behavior: 'smooth' }); // podrzano u najnovijim browserima
+// III nacin handling events preko HTML atribute
+
+//BUBLING AND CAPTURING - EVENT PROPAGATION IN PRACTICE
+
+// rgb (255,255,255)
+//kreiranje random boje
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+console.log(randomColor(0, 255));
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  //U EVENT HANDLERIMA this se odnosi na element za koji je zakacen taj EVENT HANDLER!!!
+  this.style.backgroundColor = randomColor();
+  console.log('Link', e.target, e.currentTarget);
+  console.log(e.currentTarget === this); //currentTarget je uvek jednako THIS u svakom EVENT HANDLERU
+
+  // moguce je zaustaviti EVENT Propagation - da signal putuje do roditelja
+  e.stopPropagation();
 });
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor(); // ovim i parent menja boju, zbog BUBLINGA
+  console.log('Container', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('NAV', e.target, e.currentTarget);
+});
+
+
+
+
+*/
