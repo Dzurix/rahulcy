@@ -425,7 +425,6 @@ const allSections = document.querySelectorAll('.section');
 
 const revealSection = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
 
   if (!entry.isIntersecting) return; //   GUARD CLAUSE
   entry.target.classList.remove('section--hidden');
@@ -442,3 +441,121 @@ allSections.forEach(function (section) {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
 });
+
+//LAZY LOADING IMAGES
+
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+  // Replace src with data-src from HTML
+
+  entry.target.src = entry.target.dataset.src;
+  //kada JS izvede zamenu ,tj. LOAD EVENT onda uklanjamo klasu 'lazy img'
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+};
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px', //loadovanje slika malo ranije, pre nego sto korisnik dodje do njih
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
+
+//BUILDING a SLIDER COMPONENT
+
+const slider = function () {
+  const slides = document.querySelector('.slide');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dotContainter = document.querySelector('.dots');
+
+  let curSlide = 0;
+  const maxSlide = slides.length;
+
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainter.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot dots__dot--active" data-slide="${i}"></button>`
+      );
+    });
+  };
+
+  const activateDot = function (slide) {
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active')); //brisanje aktivnih klasa
+
+    document
+      .querySelector(`.dots__dot[data-slide = "${slide}"]`)
+      .classList.add('dots__dot--active');
+  };
+
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  };
+
+  //Next slide
+  const nextSlide = function () {
+    //kako reci JS da prestane posle poslednjeg slajda da ide dalje
+    if (curSlide === maxSlide - 1) {
+      // -1 da napravimo 'lenght' da bude zero based
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+
+  //Previous slide
+
+  const prevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+
+  //initial functions
+
+  const init = function () {
+    goToSlide(0); // da ode na prvi slajd
+    createDots();
+    activateDot(0); // aktiviranje bele tacke na slajderu cim se ucita stranica
+  };
+
+  // Event handlers
+  btnRight.addEventListener('click', nextSlide);
+  btnLeft.addEventListener('click', prevSlide);
+
+  //add keyboard arrow
+
+  document.addEventListener('keydown', function (e) {
+    console.log(e);
+    if (e.key === 'ArrowLeft') prevSlide();
+    e.key === 'ArrowRight' && nextSlide(); //short circuiting
+  });
+
+  dotContainter.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const { slide } = e.target.dataset;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  });
+};
+slider(); //sav kod smo smestili u funkciju i sad je pozivamo
