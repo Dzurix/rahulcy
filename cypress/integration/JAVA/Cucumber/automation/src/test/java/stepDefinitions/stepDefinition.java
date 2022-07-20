@@ -29,7 +29,7 @@ public class stepDefinition {
 
     }
 
-    @And("^Cards are displayed $")
+    @And("^Cards are displayed$")
     public void cards_are_displayed() throws Throwable {
        //code
     }
