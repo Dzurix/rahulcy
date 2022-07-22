@@ -10,10 +10,16 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
   features = "src/test/java/features",
   glue = "stepDefinitions",
-  stepNotifications = true // ovo je da vidim testove na levoj strani
+  stepNotifications = true, // ovo je da vidim testove na levoj strani
+  plugin = {
+    "pretty", // "pretty" dodaje boje (crvena i zelena) u output report
+    "html:target/testResult.html", //u kojoj verziji hocemo izvestaj i gde da se sacuva
+    "json:target/testResult.json", //u kojoj verziji hocemo izvestaj i gde da se sacuva
+    "junit:target/testResult.xml", //u kojoj verziji hocemo izvestaj i gde da se sacuva
+  }
   //tags = "@PortalTest"
   //tags = "@SmokeTest or @MobileTest" // ovako biram sta ce se pokrenuti i koliko (sa ovim 'or')
   //tags = "not @RegTest"  // ovo znaci pokreni sve testove osim ovog
-  //tags = "@RegTest adn @MobileTest" // pokreni sve testove sa oba ova tag-a
+  //tags = "@RegTest and @MobileTest" // pokreni sve testove sa oba ova tag-a
 )
 public class testRunner {}
