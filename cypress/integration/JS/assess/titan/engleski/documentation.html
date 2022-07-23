@@ -355,145 +355,170 @@
           </div>
         </div>
       </nav>
-      <div class="main">
-        <section class="module bg-dark-60 portfolio-page-header" data-background="assets/images/portfolio/portfolio_header_bg.jpg">
+      <div class="main documentation-page">
+        <section class="module bg-dark-60 about-page-header" data-background="assets/images/about_bg.jpg">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
-                <h2 class="module-title font-alt">Portfolio Boxed</h2>
-                <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div>
+                <h2 class="module-title font-alt">Documentation</h2>
+                <div class="module-subtitle font-serif">Thank you for choosing this template. If you have any questions please feel free to email us</div>
               </div>
             </div>
           </div>
         </section>
-        <section class="module">
+        <section class="module-medium" id="contact">
           <div class="container">
             <div class="row">
-              <div class="col-sm-12">
-                <ul class="filter font-alt" id="filters">
-                  <li><a class="current wow fadeInUp" href="#" data-filter="*">All</a></li>
-                  <li><a class="wow fadeInUp" href="#" data-filter=".illustration" data-wow-delay="0.2s">Illustration</a></li>
-                  <li><a class="wow fadeInUp" href="#" data-filter=".marketing" data-wow-delay="0.4s">Marketing</a></li>
-                  <li><a class="wow fadeInUp" href="#" data-filter=".photography" data-wow-delay="0.6s">Photography</a></li>
-                  <li><a class="wow fadeInUp" href="#" data-filter=".webdesign" data-wow-delay="0.6s">Web Design</a></li>
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Contact Form</h2>
+                <div class="module-subtitle font-serif"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <p>Open the file &nbsp;<strong>assets/php/contact.php</strong>&nbsp; and enter your data:</p>
+                <pre class="prettyprint lang-basic">$to = 'info@example.com';  // please change this email id
+$subject = 'Contact Form : Titan - The best downloaded template ever';</pre>
+                <h4>If Contact form form not working</h4>
+                <p>You need to check is PHP mail() function working.</p>
+                <p>
+                  <textarea rows="4" style="width:100%; text-transform: lowercase;"><?php
+mail('you@yourmail.com','Test mail','The mail function is working!');
+echo 'Mail sent!';
+?></textarea>
+                </p>
+                <ul>
+                  <li>Save this code as mailtest.php</li>
+                  <li>change you@yourmail.com to your e-mail address</li>
+                  <li>upload mailtest.php to your server</li>
+                  <li>open mailtest.php in your browser (http://yourwebsite.com/mailtest.php)</li>
+                  <li>check your inbox to see if a test message arrived.</li>
+                </ul><strong>If it works:</strong>
+                <ul>
+                  <li>double-check your form script for errors (like e-mail address misspelling)</li>
+                  <li>use the same e-mail address as your form recipient</li>
+                  <li>double-check your SPAM filters and SPAM/Junk/Bulk mailboxes</li>
+                </ul><strong>If it not</strong>
+                <p>Contact your host and ask them to check PHP mail() setting.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="module-medium" id="reservation">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Reservation Form</h2>
+                <div class="module-subtitle font-serif"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <p>Open the file &nbsp;<strong>assets/php/reservation.php</strong>&nbsp; and enter your data:</p>
+                <pre class="prettyprint lang-basic">$from = $email;
+$to = 'info@example.com';  // please change this email id
+$subject = 'Table Booking : Titan';
+
+</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="module-medium" id="mailchimp">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Configuring Mailchimp</h2>
+                <div class="module-subtitle font-serif"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <p>Open the file &nbsp;<strong>assets/php/subscribe.php</strong>&nbsp; and enter your data:</p>
+                <pre class="prettyprint lang-basic">\n// MailChimp
+$APIKey = '53bb3bcad3947b9c5b45884b439097******';
+$listID = 'fd1b8b****';</pre>
+                <div class="alert alert-info">Grab an API Key from http://admin.mailchimp.com/account/api/</div>
+                <div class="alert alert-info">Grab your List&apos;s Unique Id by going to http://admin.mailchimp.com/lists/</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="module-medium" id="gmap">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Google Maps</h2>
+                <div class="module-subtitle font-serif"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <p>Open the file &nbsp;<strong>assets/js/main.js</strong>&nbsp; and enter your latitude &amp; longitude:</p>
+                <pre class="prettyprint lang-js">\n/* ---------------------------------------------- /*
+ * Google Map
+/* ---------------------------------------------- */
+
+var $mapis = $('#map');
+
+if ($mapis.length > 0) {
+
+    var mapLocation = new google.maps.LatLng(34.031428,-118.2071542,17);
+
+</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="module-medium" id="plugin">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Plugin Settings</h2>
+                <div class="module-subtitle font-serif"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <p>All plugins setting is in &nbsp;<strong>assets/js/custom.js</strong>&nbsp; file</p>
+                <ul>
+                  <li><a href="https://github.com/bas2k/jquery.appear/">Appear</a> - Progress bars, CountTo</li>
+                  <li><a href="http://www.thepetedesign.com/demos/jquery_super_simple_text_rotator_demo.html">Text rotator</a> - Changes to different text in same place. Mainly used in Header</li>
+                  <li><a href="http://isotope.metafizzy.co/">Isotope</a> - Portfolio</li>
+                  <li><a href="https://github.com/woothemes/FlexSlider/wiki/FlexSlider-Properties">FlexSlider</a> - Sliders</li>
+                  <li><a href="http://owlgraphic.com/owlcarousel/#how-to">OWL Carousel</a> - Team carousel, client logos carousel</li>
+                  <li><a href="http://dimsemenov.com/plugins/magnific-popup/">Magnific-popup</a> - Modal window, gallery, modal video</li>
+                  <li><a href="https://github.com/pupunzi/jquery.mb.YTPlayer">Video background</a> - Header video background or any section with video</li>
                 </ul>
+                <p>If you have any questions please feel free to email<a href="mailto:info@themewagon.com">&nbsp; here</a></p>
               </div>
             </div>
-            <ul class="works-grid works-grid-3 works-grid-gut works-hover-d" id="works-grid">
-              <li class="work-item illustration webdesign"><a href="portfolio_single_featured_image1.html">
-                  <div class="work-image"><img src="assets/images/portfolio/grid-portfolio1.jpg" alt="Portfolio Item"/></div>
-                  <div class="work-caption font-alt">
-                    <h3 class="work-title">Corporate Identity</h3>
-                    <div class="work-descr">Illustration</div>
-                  </div></a></li>
-              <li class="work-item marketing photography"><a href="portfolio_single_featured_image2.html">
-                  <div class="work-image"><img src="assets/images/portfolio/grid-portfolio2.jpg" alt="Portfolio Item"/></div>
-                  <div class="work-caption font-alt">
-                    <h3 class="work-title">Bag MockUp</h3>
-                    <div class="work-descr">Marketing</div>
-                  </div></a></li>
-              <li class="work-item illustration photography"><a href="portfolio_single_featured_slider1.html">
-                  <div class="work-image"><img src="assets/images/portfolio/grid-portfolio3.jpg" alt="Portfolio Item"/></div>
-                  <div class="work-caption font-alt">
-                    <h3 class="work-title">Disk Cover</h3>
-                    <div class="work-descr">Illustration</div>
-                  </div></a></li>
-              <li class="work-item marketing photography"><a href="portfolio_single_featured_slider2.htmll">
-                  <div class="work-image"><img src="assets/images/portfolio/grid-portfolio4.jpg" alt="Portfolio Item"/></div>
-                  <div class="work-caption font-alt">
-                    <h3 class="work-title">Business Card</h3>
-                    <div class="work-descr">Photography</div>
-                  </div></a></li>
-              <li class="work-item illustration webdesign"><a href="portfolio_single_featured_video1.html">
-                  <div class="work-image"><img src="assets/images/portfolio/grid-portfolio5.jpg" alt="Portfolio Item"/></div>
-                  <div class="work-caption font-alt">
-                    <h3 class="work-title">Web Design</h3>
-                    <div class="work-descr">Webdesign</div>
-                  </div></a></li>
-              <li class="work-item marketing webdesign"><a href="portfolio_single_featured_video2.html">
-                  <div class="work-image"><img src="assets/images/portfolio/grid-portfolio6.jpg" alt="Portfolio Item"/></div>
-                  <div class="work-caption font-alt">
-                    <h3 class="work-title">Paper clip</h3>
-                    <div class="work-descr">Marketing</div>
-                  </div></a></li>
-            </ul>
           </div>
         </section>
-        <div class="module-small bg-dark">
+        <section class="module-medium" id="changelog">
           <div class="container">
             <div class="row">
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">About Titan</h5>
-                  <p>The languages only differ in their grammar, their pronunciation and their most common words.</p>
-                  <p>Phone: +1 234 567 89 10</p>Fax: +1 234 567 89 10
-                  <p>Email:<a href="#">somecompany@example.com</a></p>
-                </div>
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Changelog</h2>
+                <div class="module-subtitle font-serif"></div>
               </div>
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Recent Comments</h5>
-                  <ul class="icon-list">
-                    <li>Maria on <a href="#">Designer Desk Essentials</a></li>
-                    <li>John on <a href="#">Realistic Business Card Mockup</a></li>
-                    <li>Andy on <a href="#">Eco bag Mockup</a></li>
-                    <li>Jack on <a href="#">Bottle Mockup</a></li>
-                    <li>Mark on <a href="#">Our trip to the Alps</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Blog Categories</h5>
-                  <ul class="icon-list">
-                    <li><a href="#">Photography - 7</a></li>
-                    <li><a href="#">Web Design - 3</a></li>
-                    <li><a href="#">Illustration - 12</a></li>
-                    <li><a href="#">Marketing - 1</a></li>
-                    <li><a href="#">Wordpress - 16</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Popular Posts</h5>
-                  <ul class="widget-posts">
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
-                        <div class="widget-posts-meta">23 january</div>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-2.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
-                        <div class="widget-posts-meta">15 February</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <p> Version 1.0 - Initial Release</p>
               </div>
             </div>
           </div>
-        </div>
-        <hr class="divider-d">
-        <footer class="footer bg-dark">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <p class="copyright font-alt">&copy; 2017&nbsp;<a href="index.html">TitaN</a>, All Rights Reserved</p>
-              </div>
-              <div class="col-sm-6">
-                <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-        <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+        </section>
       </div>
+      <script src="assets/lib/prettify.js"></script>
+      <script>
+        !function ($) {
+            $(function () {
+                window.prettyPrint && prettyPrint()
+            })
+        }(jQuery)
+      </script>
     </main>
     <!--  
     JavaScripts
@@ -510,6 +535,14 @@
     <script src="assets/lib/smoothscroll.js"></script>
     <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
     <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+    <script src="assets/lib/prettify.js"></script>
+    <script>
+      !function ($) {
+          $(function () {
+              window.prettyPrint && prettyPrint()
+          })
+      }(jQuery)
+    </script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
