@@ -48,7 +48,7 @@ public class stepDefinition {
     System.out.println(strArg2);
   }
 
-  @And("^Cards displayed are \"([^\"]*)\"$")
+  @Then("^Cards displayed are \"([^\"]*)\"$")
   public void cards_displayed_are_something(String strArg1) throws Throwable {
     System.out.println(strArg1);
   }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="14" time="4.616">
-    <testcase classname="Portal login" name="Home page default login" time="0.424">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="14" time="0.666">
+    <testcase classname="Portal login" name="Home page default login" time="0.059">
         <system-out><![CDATA[Given validate the browser..................................................passed
 When Browser is trigered....................................................passed
 Then check if browser is started............................................passed
@@ -10,7 +10,7 @@ Then Home page is populated.................................................pass
 And Cards displayed are "true"..............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Portal login" name="Home page default login 2" time="0.083">
+    <testcase classname="Portal login" name="Home page default login 2" time="0.013">
         <system-out><![CDATA[Given validate the browser..................................................passed
 When Browser is trigered....................................................passed
 Then check if browser is started............................................passed
@@ -20,7 +20,7 @@ Then Home page is populated.................................................pass
 And Cards displayed are "false".............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Portal login" name="Home page default login 3" time="0.211">
+    <testcase classname="Portal login" name="Home page default login 3" time="0.024">
         <system-out><![CDATA[Given validate the browser..................................................passed
 When Browser is trigered....................................................passed
 Then check if browser is started............................................passed
@@ -30,7 +30,7 @@ Then Home page is populated.................................................pass
 And Cards displayed are "false".............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Portal login" name="Parametarization" time="0.112">
+    <testcase classname="Portal login" name="Parametarization" time="0.013">
         <system-out><![CDATA[Given validate the browser..................................................passed
 When Browser is trigered....................................................passed
 Then check if browser is started............................................passed
@@ -40,7 +40,7 @@ Then Home page is populated.................................................pass
 And Cards displayed are "true"..............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Portal login" name="Parametarization_2" time="0.075">
+    <testcase classname="Portal login" name="Parametarization_2" time="0.012">
         <system-out><![CDATA[Given validate the browser..................................................passed
 When Browser is trigered....................................................passed
 Then check if browser is started............................................passed
@@ -50,7 +50,7 @@ Then Home page is populated.................................................pass
 And Cards displayed are "true"..............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Portal login" name="Parametarization_3" time="0.044">
+    <testcase classname="Portal login" name="Parametarization_3" time="0.01">
         <system-out><![CDATA[Given validate the browser..................................................passed
 When Browser is trigered....................................................passed
 Then check if browser is started............................................passed
@@ -60,7 +60,7 @@ Then Home page is populated.................................................pass
 And Cards displayed are "true"..............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Portal login" name="Parametarization_4" time="0.045">
+    <testcase classname="Portal login" name="Parametarization_4" time="0.012">
         <system-out><![CDATA[Given validate the browser..................................................passed
 When Browser is trigered....................................................passed
 Then check if browser is started............................................passed
@@ -70,49 +70,49 @@ Then Home page is populated.................................................pass
 And Cards displayed are "true"..............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Application login" name="Home page default login" time="0.103">
+    <testcase classname="Application login" name="Home page default login" time="0.018">
         <system-out><![CDATA[Given User is on NetBanking landing page....................................passed
 When User login into application with "jin" and password "1234".............passed
 Then Home page is populated.................................................passed
 And Cards displayed are "true"..............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Application login" name="Home page default login 2" time="0.03">
+    <testcase classname="Application login" name="Home page default login 2" time="0.009">
         <system-out><![CDATA[Given User is on NetBanking landing page....................................passed
 When User login into application with "john" and password "4321"............passed
 Then Home page is populated.................................................passed
 And Cards displayed are "false".............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Application login" name="Home page default login 3" time="0.045">
+    <testcase classname="Application login" name="Home page default login 3" time="0.006">
         <system-out><![CDATA[Given User is on NetBanking landing page....................................passed
 When User sign up with following details....................................passed
 Then Home page is populated.................................................passed
 And Cards displayed are "false".............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Application login" name="Parametarization" time="0.039">
+    <testcase classname="Application login" name="Parametarization" time="0.002">
         <system-out><![CDATA[Given User is on NetBanking landing page....................................passed
 When User login in to application with user1 and password pass1.............passed
 Then Home page is populated.................................................passed
 And Cards displayed are "true"..............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Application login" name="Parametarization_2" time="0.033">
+    <testcase classname="Application login" name="Parametarization_2" time="0.008">
         <system-out><![CDATA[Given User is on NetBanking landing page....................................passed
 When User login in to application with user2 and password pass2.............passed
 Then Home page is populated.................................................passed
 And Cards displayed are "true"..............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Application login" name="Parametarization_3" time="0.048">
+    <testcase classname="Application login" name="Parametarization_3" time="0.004">
         <system-out><![CDATA[Given User is on NetBanking landing page....................................passed
 When User login in to application with user3 and password pass3.............passed
 Then Home page is populated.................................................passed
 And Cards displayed are "true"..............................................passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Application login" name="Parametarization_4" time="0.064">
+    <testcase classname="Application login" name="Parametarization_4" time="0.005">
         <system-out><![CDATA[Given User is on NetBanking landing page....................................passed
 When User login in to application with user4 and password pass4.............passed
 Then Home page is populated.................................................passed

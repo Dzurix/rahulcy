@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
   features = "src/test/java/features",
   glue = "stepDefinitions",
   stepNotifications = true, // ovo je da vidim testove na levoj strani
+  monochrome = true, // da imamamo lepo formatiranu konzolu
+  // dryRun = true, // proverava da li neki test case nije mapiran u stepDefinitions
   plugin = {
     "pretty", // "pretty" dodaje boje (crvena i zelena) u output report
     "html:target/testResult.html", //u kojoj verziji hocemo izvestaj i gde da se sacuva

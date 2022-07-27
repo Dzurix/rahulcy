@@ -4,7 +4,7 @@
 
 describe("My first test with Adithi", () => {
   it("test url works", () => {
-    cy.visit("https://react-redux.realworld.io/");
+    cy.visit("https://www.ndfr.nl/");
   });
   it("test signup exist", () => {
     cy.contains("a.nav-link", "Sign up").click();
