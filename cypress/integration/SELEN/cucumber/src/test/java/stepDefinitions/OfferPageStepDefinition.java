@@ -26,8 +26,7 @@ public class OfferPageStepDefinition {
   @Then("^User searched for \"([^\"]*)\" shortname in offers page$")
   public void user_searched_for_something_shortname_in_offers_page(
     String shortName
-  )
-    throws InterruptedException {
+  ) {
     //offer page
     testContextSetup.driver.findElement(By.linkText("Top Deals")).click();
     Set<String> s1 = testContextSetup.driver.getWindowHandles();
@@ -38,7 +37,7 @@ public class OfferPageStepDefinition {
     testContextSetup.driver
       .findElement(By.xpath("//input[@type='search']"))
       .sendKeys(shortName);
-    Thread.sleep(2000);
+    //  Thread.sleep(2000);
 
     offerPageProductName =
       driver.findElement(By.cssSelector("tr td:nth-child(1)")).getText();
