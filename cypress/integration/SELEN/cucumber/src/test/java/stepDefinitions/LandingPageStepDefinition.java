@@ -27,7 +27,7 @@ public class LandingPageStepDefinition {
   public void user_is_on_greencart_landing_page() {
     System.setProperty(
       "webdriver.chrome.driver",
-      "C:/Users/dst/Documents/chromedriver_win32"
+      "C://Users/dst/Documents/chromedriver_win32/chromedriver.exe"
     );
     testContextSetup.driver = new ChromeDriver();
     testContextSetup.driver.get(
